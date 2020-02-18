@@ -1,0 +1,11 @@
+{
+  "*.{css,html,js,jsx}": [
+    "pretty-quick --staged",
+    "eslint --fix .",
+    "git add"
+  ],
+  "*.{json,md}": [
+    "pretty-quick --staged",
+    "git add"
+  ]
+}

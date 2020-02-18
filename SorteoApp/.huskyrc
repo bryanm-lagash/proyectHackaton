@@ -1,0 +1,6 @@
+{
+    "hooks": {
+        "pre-commit": "lint-staged && eslint --ext .js,.jsx .",
+        "pre-push": "eslint --ext .js,.jsx ."
+    }
+}
