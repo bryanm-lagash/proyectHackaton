@@ -3,12 +3,12 @@ import { Container, ListItem, ListItemText } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 
 import useMount from '../hooks/useMount';
 import jsonApi from '../services/jsonApi';
 import useStyles from '../containers/styles';
 import { setUserList } from '../actions/sorteo';
-import axios from 'axios';
 
 const ListaUsers = () => {
   const classes = useStyles();
