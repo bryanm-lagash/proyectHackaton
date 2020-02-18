@@ -1,7 +1,8 @@
 import { create } from 'apisauce';
 
 const config = {
-  baseURL: 'http://localhost:3000/'
+  // baseURL: 'http://localhost:3000/'
+  baseURL: 'https://app-sorteo.firebaseio.com/'
 };
 
 const createApi = () => {
@@ -12,17 +13,17 @@ const createApi = () => {
       console.log(data);
     });
 
-  const getCrear = data => post('crear', data);
-  const getUsers = () => get('users');
-  const getSorteo = () => get('getSorteo');
-  const addUsers = data => post('users/add', data);
-  const ganadores = data => post('ganadores', { nombre: data });
-  const getQR = () => get('getQR');
-  const getGanador = () => get('ganadores/set');
+  const crearSorteo = data => post('sorteo.json', data);
+  const getUsers = () => get('users.json');
+  const getSorteo = () => get('getSorteo.json');
+  const addUsers = data => post('users/add.json', data);
+  const ganadores = data => post('ganadores.json', { nombre: data });
+  const getQR = () => get('getQR.json');
+  const getGanador = () => get('ganadores/set.json');
 
   return {
     setSorteo,
-    getCrear,
+    crearSorteo,
     getUsers,
     getSorteo,
     addUsers,

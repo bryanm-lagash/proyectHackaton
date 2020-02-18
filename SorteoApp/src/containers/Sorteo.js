@@ -29,7 +29,7 @@ const Sorteo = () => {
   const onSubmit = async data => {
     console.log(data);
     // const indice = datosApi.findIndex(element => element.email === nameObject);
-    const { status } = await jsonApi().setSorteo(data);
+    const { status } = await jsonApi().crearSorteo(data);
 
     console.log(status);
 
