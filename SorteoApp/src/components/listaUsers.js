@@ -1,28 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, ListItem, ListItemText } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
+import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
 import jsonApi from '../services/jsonApi';
 import useStyles from '../containers/styles';
 import { setUserList } from '../actions/sorteo';
 
+firebase.initializeApp(window.firebaseConfig);
+
 const ListaUsers = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [data, setData] = useState({});
 
   const { userList } = useSelector(({ sorteo }) => sorteo);
 
   console.log('dataform ', userList);
   useMount(async () => {
-    const { data } = await jsonApi().getUsers();
+    firebase
+      .database()
+      .ref('users/')
+      .on('value', snap => {
+        const users = snap.val();
 
-    dispatch(setUserList(Object.values(data.add)));
-    console.log('listausers', Object.values(data.add));
+        if (users !== null) {
+          dispatch(setUserList(Object.values(users.add)));
+          console.log('listausers', Object.keys(Object.values(users)[0])[1]);
+        }
+      });
+    // const { data } = await jsonApi().getUsers();
   });
 
   function FormRow() {
