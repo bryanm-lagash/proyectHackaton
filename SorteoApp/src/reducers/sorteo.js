@@ -25,9 +25,9 @@ const setDataUser = produce((draft, { data }) => {
 });
 
 const setGanador = produce((draft, { data }) => {
-  console.log('setganador', data);
   draft.ganador = data;
-  console.log('ganador', draft.ganador);
+  draft.ganador = draft.ganador[Math.floor(Math.random() * data.length)].nombre;
+  console.log('setganador', draft.ganador);
 });
 
 const reducer = createReducer(INITIAL_STATE, {

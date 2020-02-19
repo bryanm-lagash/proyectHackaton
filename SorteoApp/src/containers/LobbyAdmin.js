@@ -18,13 +18,13 @@ const LobbyAdmin = () => {
   const dispatch = useDispatch();
   const { userList } = useSelector(({ sorteo }) => sorteo);
 
-  const handleGoBack = useCallback(async () => {
-    const win = userList[Math.floor(Math.random() * userList.length)].nombre;
+  const handleGoBack = useCallback(() => {
+    // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
 
-    dispatch(setGanador(win));
+    // dispatch(setGanador(win));
     dispatch(push(GANADOR));
-    await jsonApi().ganadores(win);
-  }, [dispatch, userList]);
+    // await jsonApi().ganadores(win);
+  });
 
   return (
     <div>

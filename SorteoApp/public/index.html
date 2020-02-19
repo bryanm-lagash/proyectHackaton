@@ -39,5 +39,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyDnnh9R59xf5jlPxlXbIUMhFbu39ph3rrw',
+        authDomain: 'app-sorteo.firebaseapp.com',
+        databaseURL: 'https://app-sorteo.firebaseio.com',
+        projectId: 'app-sorteo',
+        storageBucket: 'app-sorteo.appspot.com',
+        messagingSenderId: '5657434317',
+        appId: '1:5657434317:web:4d04059bb424f012a43184'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
