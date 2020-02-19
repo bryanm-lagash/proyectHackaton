@@ -28,7 +28,7 @@ const Lobby = () => {
       .on('value', snap => {
         const users = snap.val();
 
-        console.log('ganador lobby', users);
+        // console.log('ganador lobby', users);
 
         if (users !== null) {
           dispatch(push(GANADOR));

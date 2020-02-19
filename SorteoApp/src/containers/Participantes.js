@@ -15,8 +15,7 @@ const Participantes = () => {
 
   useMount(async () => {
     const data = await jsonApi().getSorteo();
-
-    console.log('Participantes', data.data);
+    // console.log('Participantes', data.data);
   });
 
   return (
