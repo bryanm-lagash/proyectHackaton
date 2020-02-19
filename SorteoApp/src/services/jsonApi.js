@@ -15,7 +15,7 @@ const createApi = () => {
 
   const crearSorteo = data => post('sorteo.json', data);
   const getUsers = () => get('users.json');
-  const getSorteo = () => get('getSorteo.json');
+  const getSorteo = () => get('sorteo.json');
   const addUsers = data => post('users/add.json', data);
   const ganadores = data => post('ganadores.json', { nombre: data });
   const getQR = () => get('getQR.json');

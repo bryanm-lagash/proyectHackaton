@@ -15,6 +15,8 @@ import { configuracionSorteo } from '../actions/sorteo';
 
 import useStyles from './styles';
 
+const uuidv4 = require('uuid/v4');
+
 const Inscripcion = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
@@ -24,6 +26,11 @@ const Inscripcion = () => {
   ]);
 
   const onSubmit = async data => {
+    const idNueva = uuidv4();
+    const idSorteo = uuidv4();
+
+    data.id = idNueva;
+    data.idSorteo = idSorteo;
     console.log(data);
     const { status } = await jsonApi().addUsers(data);
 

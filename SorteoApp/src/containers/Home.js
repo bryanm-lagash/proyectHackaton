@@ -25,7 +25,6 @@ const Home = () => {
         <img src={BackgroundLogo} style={{ position: 'relative', top: 60 }} />
       </div>
       <div style={{ textAlign: 'center' }}>
-        {' '}
         <Button
           className={classes.button}
           color='primary'

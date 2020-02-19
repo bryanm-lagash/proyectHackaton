@@ -1,49 +1,43 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import { INSCRIPCION } from '../routes/paths';
 import useStyles from '../containers/styles';
+
+const uuidv4 = require('uuid/v4');
 
 const ListaSorteo = () => {
   const classes = useStyles();
 
   const handleNavigate = id => {
-    const url = `/lobby/${id}`;
+    const url = `${INSCRIPCION}/${id}`;
 
+    console.log(uuidv4());
     window.location.href = url;
   };
 
-  return (
-    <div>
-      <Button
-        className={classes.button}
-        color='primary'
-        variant='contained'
-        // eslint-disable-next-line react/jsx-no-bind
-        onClick={() => handleNavigate(1)}
-      >
-        Sorteo 1
-      </Button>
-      <Button
-        className={classes.button}
-        color='primary'
-        variant='contained'
-        // eslint-disable-next-line react/jsx-no-bind
-        onClick={() => handleNavigate(2)}
-      >
-        Sorteo 2
-      </Button>
-      <Button
-        className={classes.button}
-        color='primary'
-        variant='contained'
-        // eslint-disable-next-line react/jsx-no-bind
-        onClick={() => handleNavigate(3)}
-      >
-        Sorteo 3
-      </Button>
-    </div>
-  );
+  const sorteos = [
+    { id: 1, nombre: 'Futbol a las 15:00' },
+    { id: 2, nombre: 'Lava la Loza' },
+    { id: 3, nombre: 'pinpong' }
+  ];
+
+  const botones = sorteos.map(sorteo => (
+    <Button
+      className={classes.button}
+      color='primary'
+      variant='contained'
+      fullWidth
+      // eslint-disable-next-line react/jsx-no-bind
+      onClick={() => handleNavigate(sorteo.id)}
+    >
+      Sorteo {sorteo.nombre}
+    </Button>
+  ));
+
+  return <div>{botones}</div>;
 };
 
 export default ListaSorteo;
