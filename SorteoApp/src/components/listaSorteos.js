@@ -1,20 +1,27 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
+import { useSelector } from 'react-redux';
 
+import useMount from '../hooks/useMount';
+import jsonApi from '../services/jsonApi';
 import { INSCRIPCION } from '../routes/paths';
 import useStyles from '../containers/styles';
 
 const uuidv4 = require('uuid/v4');
 
-const ListaSorteo = () => {
+const ListaSorteo = props => {
   const classes = useStyles();
+
+  const { listaSorteos } = useSelector(({ sorteo }) => sorteo);
+
+  console.log('weninisi', listaSorteos);
+  useMount(() => {
+    // console.log('weninisi', listaSorteos);
+  });
 
   const handleNavigate = id => {
     const url = `${INSCRIPCION}/${id}`;
 
-    console.log(uuidv4());
     window.location.href = url;
   };
 
@@ -24,7 +31,7 @@ const ListaSorteo = () => {
     { id: 3, nombre: 'pinpong' }
   ];
 
-  const botones = sorteos.map(sorteo => (
+  const botones = props.lista.map(sorteo => (
     <Button
       className={classes.button}
       color='primary'
