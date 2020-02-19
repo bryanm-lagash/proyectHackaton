@@ -12,12 +12,11 @@ const Ganador = () => {
   const classes = useStyles();
   const { ganador } = useSelector(({ sorteo }) => sorteo);
   const dispatch = useDispatch();
+  const [user, setUser] = useState();
 
   useMount(async () => {
-    // const { data } = await jsonApi().getGanador();
-
-    // setGanador(data);
     console.log('api ganador', ganador);
+
     // const ref = firebase.database().ref('dinosaurs');
 
     // ref
@@ -26,17 +25,22 @@ const Ganador = () => {
     //   .on('child_added', snapshot => {
     //     console.log(snapshot.key);
     //   });
+    if (ganador !== '') {
+      await jsonApi().ganadorSet({ nombre: ganador });
+    }
+
     firebase
       .database()
-      .ref('ganadores/')
+      .ref('ganador/')
+      .orderByChild('nombre')
+      .equalTo(ganador)
       .on('value', snap => {
         const win = snap.val();
 
         if (win !== null) {
-          dispatch(setGanador(Object.values(win)));
-          // agregar un dispatch como en listaUsers
+          setUser(Object.values(win)[0].nombre);
 
-          console.log('ganadores', Object.values(win));
+          console.log('ganadores', Object.values(win)[0].nombre);
         }
       });
   });
@@ -50,13 +54,8 @@ const Ganador = () => {
       <font face='Roboto' size=' 7'>
         EL GANADOR ES
       </font>
-      <h1 />
-      <List className={classes.List}>
-        <font face='Roboto' size=' 7'>
-          "{ganador}"
-        </font>
-        <h1 />
-      </List>
+
+      <p>{user}</p>
     </Container>
   );
 };

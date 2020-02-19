@@ -16,14 +16,23 @@ import useStyles from './styles';
 const LobbyAdmin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userList } = useSelector(({ sorteo }) => sorteo);
+  const { userList, ganador } = useSelector(({ sorteo }) => sorteo);
 
-  const handleGoBack = useCallback(() => {
+  const handleGoBack = useCallback(async () => {
     // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
 
     // dispatch(setGanador(win));
-    dispatch(push(GANADOR));
-    // await jsonApi().ganadores(win);
+    console.log('botton lobby', userList);
+
+    if (userList !== null) {
+      dispatch(setGanador(Object.values(userList)));
+      dispatch(push(GANADOR));
+    }
+
+    // if (ganador !== '') {
+    //   await jsonApi().ganadorSet(ganador);
+    //   dispatch(push(GANADOR));
+    // }
   });
 
   return (

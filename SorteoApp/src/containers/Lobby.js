@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { goBack, push } from 'connected-react-router';
@@ -21,20 +21,25 @@ const Lobby = () => {
 
   const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
 
-  useMount(async () => {
-    // firebase
-    //   .database()
-    //   .ref('users/')
-    //   .on('value', snap => {
-    //     const users = snap.val();
-    //     if (users !== null) {
-    //       dispatch(push(GANADOR));
-    //     }
-    //   });
+  useMount(() => {
+    firebase
+      .database()
+      .ref('ganador/')
+      .on('value', snap => {
+        const users = snap.val();
+
+        console.log('ganador lobby', users);
+
+        if (users !== null) {
+          dispatch(push(GANADOR));
+        }
+      });
     // const { data } = await jsonApi().getUsers();
-    if (ganador) {
-      dispatch(push(GANADOR));
-    }
+    // console.log('ganador lobby', ganador);
+
+    // if (ganador !== null) {
+    //   dispatch(push(GANADOR));
+    // }
   });
   // const handleApi = async () => {
   //   const { data } = await jsonApi().getGanador();

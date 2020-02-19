@@ -10,7 +10,7 @@ import {
 const INITIAL_STATE = {
   dataForm: [],
   userList: [],
-  ganador: []
+  ganador: ''
 };
 
 const setData = produce((draft, { data }) => {
@@ -25,8 +25,8 @@ const setDataUser = produce((draft, { data }) => {
 });
 
 const setGanador = produce((draft, { data }) => {
-  draft.ganador = data;
-  draft.ganador = draft.ganador[Math.floor(Math.random() * data.length)].nombre;
+  // draft.ganador = data;
+  draft.ganador = data[Math.floor(Math.random() * data.length)].nombre;
   console.log('setganador', draft.ganador);
 });
 
