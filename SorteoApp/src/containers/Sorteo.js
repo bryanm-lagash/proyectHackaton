@@ -19,6 +19,8 @@ const Sorteo = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
 
+  const onChangeHandler = () => {};
+
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
   ]);
@@ -29,7 +31,7 @@ const Sorteo = () => {
   const onSubmit = async data => {
     console.log(data);
     // const indice = datosApi.findIndex(element => element.email === nameObject);
-    const { status } = await jsonApi().crearSorteo(data);
+    const { status } = await jsonApi().getCrear(data);
 
     console.log(status);
 
@@ -64,7 +66,11 @@ const Sorteo = () => {
                   type='text'
                   //   defaultValue={open.first}
                   fullWidth
-                  inputRef={register({ required: true, maxLength: 50 })}
+                  inputRef={register({
+                    required: true,
+                    maxLength: 50,
+                    minLength: 1
+                  })}
                   variant='outlined'
                 />
                 {errors.firstName && errors.firstName.type === 'required' && (
@@ -79,7 +85,11 @@ const Sorteo = () => {
                   label='Nombre Sorteo'
                   type='text'
                   fullWidth
-                  inputRef={register({ required: true, maxLength: 50 })}
+                  inputRef={register({
+                    required: true,
+                    maxLength: 50,
+                    minLength: 1
+                  })}
                   variant='outlined'
                 />
                 {errors.firstName && errors.firstName.type === 'required' && (
@@ -95,7 +105,7 @@ const Sorteo = () => {
                   InputLabelProps={{
                     shrink: true
                   }}
-                  inputRef={register({ required: true, maxLength: 5 })}
+                  inputRef={register({ required: true, maxLength: 5, min: 2 })}
                   fullWidth
                   variant='outlined'
                 />
@@ -111,7 +121,7 @@ const Sorteo = () => {
                   InputLabelProps={{
                     shrink: true
                   }}
-                  inputRef={register({ required: true, maxLength: 5 })}
+                  inputRef={register({ required: true, maxLength: 5, min: 1 })}
                   fullWidth
                   variant='outlined'
                 />
@@ -124,6 +134,7 @@ const Sorteo = () => {
                   type='submit'
                   color='primary'
                   variant='contained'
+                  // disabled='logica'
                 >
                   Guardar
                 </Button>
@@ -141,6 +152,7 @@ const Sorteo = () => {
           </Container>
         </form>
       </Fragment>
+      <Footer />
     </div>
   );
 };
