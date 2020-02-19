@@ -19,7 +19,7 @@ const Sorteo = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
 
-  const onChangeHandler = () => {};
+  // const onChangeHandler = () => {};
 
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -31,7 +31,7 @@ const Sorteo = () => {
   const onSubmit = async data => {
     console.log(data);
     // const indice = datosApi.findIndex(element => element.email === nameObject);
-    const { status } = await jsonApi().getCrear(data);
+    const { status } = await jsonApi().crearSorteo(data);
 
     console.log(status);
 
