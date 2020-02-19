@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import { useSelector } from 'react-redux';
 import qr from 'qr-image';
 
 import useMount from '../hooks/useMount';
@@ -9,7 +8,6 @@ import useStyles from '../containers/styles';
 const CodeQR = props => {
   const { link } = props;
   const classes = useStyles();
-  // const { dataForm } = useSelector(({ sorteo }) => sorteo);
   const [qrImage, setQrImage] = useState();
 
   useMount(async () => {
