@@ -1,21 +1,23 @@
-import React, { useCallback } from 'react';
-import { Button, Container, Grid, Paper } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
+import React from 'react';
+import { Container, Grid, Paper } from '@material-ui/core';
 
 import InfoSorteo from '../components/InfoSorteo';
 import CodeQR from '../components/QRcode';
-import { INSCRIPCION } from '../routes/paths';
 import Header from '../components/Header';
+import ListaSorteos from '../components/listaSorteos';
+import useMount from '../hooks/useMount';
+import jsonApi from '../services/jsonApi';
 
 import useStyles from './styles';
 
 const Participantes = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
-    dispatch
-  ]);
+
+  useMount(async () => {
+    const data = await jsonApi().getSorteo();
+
+    console.log('Participantes', data.data);
+  });
 
   return (
     <div>
@@ -25,14 +27,7 @@ const Participantes = () => {
         <CodeQR />
         <Grid className={classes.grid}>
           <Paper elevation={0} className={classes.paper}>
-            <Button
-              className={classes.button}
-              color='primary'
-              variant='contained'
-              onClick={handleNavigate(INSCRIPCION)}
-            >
-              Inscripcion
-            </Button>
+            <ListaSorteos />
           </Paper>
         </Grid>
       </Container>

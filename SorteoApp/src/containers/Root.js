@@ -3,12 +3,14 @@ import { Button, Container, Grid, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import { HOME } from '../routes/paths';
+import BackgroundLogo from '../resources/Background_logo.png';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 import useStyles from './styles';
 
 const Root = () => {
-  //   const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -16,17 +18,24 @@ const Root = () => {
 
   return (
     <div>
-      <Container maxWidth={false}>
-        <h1>Pestaña principal administardor</h1>
-        <h1>LAGASH</h1>
+      <Header />
+      <div style={{ textAlign: 'center' }}>
+        <img src={BackgroundLogo} style={{ position: 'relative', top: 60 }} />
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        {' '}
         <Button
+          className={classes.button}
           color='primary'
           variant='contained'
-          onClick={handleNavigate(HOME)}
+          onClick={handleNavigate('/sorteo')}
+          style={{ position: 'relative', top: 120 }}
         >
-          Start
+          Let's Go
         </Button>
-      </Container>
+      </div>
+
+      <Footer />
     </div>
   );
 };

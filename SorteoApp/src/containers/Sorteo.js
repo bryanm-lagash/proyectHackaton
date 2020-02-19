@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -15,11 +15,24 @@ import { configuracionSorteo } from '../actions/sorteo';
 
 import useStyles from './styles';
 
+const uuidv4 = require('uuid/v4');
+
 const Sorteo = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
 
-  const onChangeHandler = () => {};
+  const [formState, setFormState] = useState({
+    formData: {
+      id: '',
+      nombreAdmin: '',
+      nombreSorteo: '',
+      minimoParticipantes: 0,
+      cantidadGanadores: 0
+    }
+    // valid: false
+  });
+
+  // const onChangeHandler = () => {};
 
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -27,22 +40,34 @@ const Sorteo = () => {
   const handleData = useCallback(data => dispatch(configuracionSorteo(data)), [
     dispatch
   ]);
+  const classes = useStyles();
 
   const onSubmit = async data => {
-    console.log(data);
-    // const indice = datosApi.findIndex(element => element.email === nameObject);
-    const { status } = await jsonApi().getCrear(data);
+    const minimoParticipantes = parseInt(data.minimo);
+    const cantidadSeleccionados = parseInt(data.seleccionados);
 
-    console.log(status);
+    if (minimoParticipantes <= cantidadSeleccionados) {
+      alert(
+        'El numero de Seleccionados debe ser menor a la cantidad minima de participantes'
+      );
+    } else {
+      const idNueva = uuidv4();
 
-    if (status === 200) {
-      dispatch(push(LOBBY_ADMIN));
+      data.id = idNueva;
+
+      console.log('recibe', data);
+      // const indice = datosApi.findIndex(element => element.email === nameObject);
+      const { status } = await jsonApi().crearSorteo(data);
+
+      console.log(status);
+
+      if (status === 200) {
+        dispatch(push(LOBBY_ADMIN));
+      }
+
+      handleData(data);
     }
-
-    handleData(data);
   };
-
-  const classes = useStyles();
 
   return (
     <div>
@@ -114,7 +139,7 @@ const Sorteo = () => {
                 )}
                 <TextField
                   className={classes.item}
-                  id='minimoParticipantes'
+                  id='seleccionados'
                   label='Número ganadores'
                   type='number'
                   name='seleccionados'
@@ -134,7 +159,6 @@ const Sorteo = () => {
                   type='submit'
                   color='primary'
                   variant='contained'
-                  // disabled='logica'
                 >
                   Guardar
                 </Button>
