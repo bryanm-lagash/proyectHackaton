@@ -3,6 +3,67 @@ html {
 }
 
 body {
+  background-color: white;
   margin: 0;
   padding: 0;
+}
+
+.caja {
+  background-color: white;
+}
+
+.cart2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 110px;
+  border-radius: 100px;
+  border-radius: 40px 40px 40px 40px;
+  width: 990px;
+}
+
+.raduis {
+  border-radius: 22px 22px 22px 22px;
+  background: linear-gradient(
+    to right,
+    rgba(27, 86, 189, 1) 0%,
+    rgba(27, 86, 189, 1) 20%,
+    rgba(100, 163, 222, 1) 75%,
+    rgba(16, 57, 179, 1) 100%
+  );
+  box-shadow: 0px 1px 15px 2px rgba(0, 0, 0, 0.75);
+}
+
+.titulo {
+  color: floralwhite;
+  font-family: 'Open Sans';
+}
+
+.paper {
+  width: 140px;
+  height: 60px;
+  text-align: center;
+  position: relative;
+
+  right: 125px;
+}
+
+.icono {
+  position: static;
+  text-align: center;
+  top: 12px;
+}
+
+.numeroParticipantes {
+  position: relative;
+  font-size: 16px;
+  color: floralwhite;
+}
+
+.botonGanador {
+  margin-top: 220px;
+  width: 400px;
+  font-size: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }

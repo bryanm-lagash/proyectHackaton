@@ -15,7 +15,6 @@ firebase.initializeApp(window.firebaseConfig);
 const ListaUsers = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const { userList, idSorteo } = useSelector(({ sorteo }) => sorteo);
 
   // console.log('dataform ', userList);
@@ -61,8 +60,8 @@ const ListaUsers = () => {
           {Object.values(userList).map(({ nombre }) => (
             <ListItem className={classes.List} key={nombre}>
               <ListItem alignItems='flex-start'>
-                <Paper className={classes.paper}>
-                  <ListItemText primary={`${nombre}`} />
+                <Paper className='paper'>
+                  <ListItemText className='icono' primary={`${nombre}`} />
                 </Paper>
               </ListItem>
             </ListItem>
@@ -73,20 +72,27 @@ const ListaUsers = () => {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <font face='Roboto' size=' 7'>
-        Lista de Usuarios
-      </font>
-      <Container className={classes.container} maxWidth={false}>
-        <div className={classes.root}>
-          <Grid container spacing={1}>
-            <Grid container item xs={12} spacing={3}>
-              <FormRow />
-            </Grid>
-          </Grid>
-        </div>
-        <br />
-      </Container>
+    <div className='caja container'>
+      <div className='cart2 class="row">'>
+        <Container className='raduis col-md-4'>
+          <div style={{ textAlign: 'center' }}>
+            <font className='titulo' face='Roboto' size=' 7'>
+              Lista de Usuarios
+              <p className='numeroParticipantes'>{`Numero de participantes ${userList.length}`}</p>
+            </font>
+            <Container className={classes.container} maxWidth={false}>
+              <div className={classes.root}>
+                <Grid container spacing={1}>
+                  <Grid container item xs={12} spacing={3}>
+                    <FormRow />
+                  </Grid>
+                </Grid>
+              </div>
+              <br />
+            </Container>
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };
