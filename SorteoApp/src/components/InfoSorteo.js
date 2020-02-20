@@ -15,12 +15,12 @@ const InfoSorteo = () => {
 
   const { dataForm } = useSelector(({ sorteo }) => sorteo);
 
-  console.log('dataform ', dataForm);
+  // console.log('dataform ', dataForm);
   useMount(async () => {
     const { data } = await jsonApi().getSorteo();
 
     dispatch(configuracionSorteo(data));
-    console.log(data);
+    // console.log(data);
   });
 
   return (

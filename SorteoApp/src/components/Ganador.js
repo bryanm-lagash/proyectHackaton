@@ -15,7 +15,7 @@ const Ganador = () => {
   const [user, setUser] = useState();
 
   useMount(async () => {
-    console.log('api ganador', ganador);
+    // console.log('api ganador', ganador);
 
     // const ref = firebase.database().ref('dinosaurs');
 
@@ -40,7 +40,7 @@ const Ganador = () => {
         if (win !== null) {
           setUser(Object.values(win)[0].nombre);
 
-          console.log('ganadores', Object.values(win)[0].nombre);
+          // console.log('ganadores', Object.values(win)[0].nombre);
         }
       });
   });

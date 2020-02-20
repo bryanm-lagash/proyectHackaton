@@ -31,10 +31,10 @@ const Inscripcion = () => {
 
     data.id = idNueva;
     data.idSorteo = idSorteo;
-    console.log(data);
+    // console.log(data);
     const { status } = await jsonApi().addUsers(data);
 
-    console.log(status);
+    // console.log(status);
 
     if (status === 200) {
       dispatch(push(LOBBY));

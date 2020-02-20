@@ -16,20 +16,20 @@ const INITIAL_STATE = {
 };
 
 const setData = produce((draft, { data }) => {
-  console.log('data reducer', data);
+  // console.log('data reducer', data);
 
   draft.dataForm = data;
 });
 
 const setDataUser = produce((draft, { data }) => {
-  console.log('data user reducer', data);
+  // console.log('data user reducer', data);
   draft.userList = data;
 });
 
 const setGanador = produce((draft, { data }) => {
   // draft.ganador = data;
   draft.ganador = data[Math.floor(Math.random() * data.length)].nombre;
-  console.log('setganador', draft.ganador);
+  // console.log('setganador', draft.ganador);
 });
 
 const setListaSorteos = produce((draft, { data }) => {
