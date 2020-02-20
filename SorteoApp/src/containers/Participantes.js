@@ -8,7 +8,6 @@ import jsonApi from '../services/jsonApi';
 import InfoSorteo from '../components/InfoSorteo';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
-import ListaSorteos from '../components/listaSorteos';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
 import { INSCRIPCION } from '../routes/paths';
 
@@ -49,27 +48,32 @@ const Participantes = () => {
   return (
     <div>
       <Header />
-      <Container className={classes.container} maxWidth={false}>
+      <div width='1000px'>
         <InfoSorteo />
         <CodeQR link='' />
-        <Grid className={classes.grid}>
-          <Paper elevation={0} className={classes.paper}>
-            {Object.values(listaSorteo).map(sorteo => (
-              <Button
-                className={classes.button}
-                color='primary'
-                variant='contained'
-                // eslint-disable-next-line react/jsx-no-bind
-                onClick={() => handleNavigate(sorteo.id)}
-                fullWidth
-                display='flex'
-              >
-                Sorteo {sorteo.nombre_sorteo}
-              </Button>
-            ))}
-          </Paper>
-        </Grid>
-      </Container>
+        {Object.values(listaSorteo).map(sorteo => (
+          <div
+            style={{
+              width: '100%',
+              margin: '5px',
+              height: '1%',
+              textAlign: 'center'
+            }}
+          >
+            <Button
+              style={{ width: '75%', heigth: '500px' }}
+              className={classes.button}
+              color='primary'
+              variant='contained'
+              // eslint-disable-next-line react/jsx-no-bind
+              onClick={() => handleNavigate(sorteo.id)}
+            >
+              Sorteo {sorteo.nombre_sorteo} <br /> Hecho por {sorteo.nombre}
+            </Button>
+            <br />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
