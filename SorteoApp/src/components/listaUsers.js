@@ -16,23 +16,34 @@ const ListaUsers = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const { userList } = useSelector(({ sorteo }) => sorteo);
+  const { userList, idSorteo } = useSelector(({ sorteo }) => sorteo);
 
   // console.log('dataform ', userList);
   useMount(async () => {
     firebase
       .database()
-      .ref('users/')
+      .ref('users/add/')
+      .orderByChild('idSorteo')
+      .equalTo(idSorteo)
       .on('value', snap => {
         const users = snap.val();
 
         if (users !== null) {
-          dispatch(setUserList(Object.values(users.add)));
-          // console.log('listausers', Object.keys(Object.values(users)[0])[1]);
+          dispatch(setUserList(Object.values(users)));
+          // console.log(
+          //   'listausers',
+          //   Object.values(users),
+          //   'idSorteo:',
+          //   idSorteo
+          // );
         }
       });
     // const { data } = await jsonApi().getUsers();
   });
+
+  // if (userList === undefined) {
+  //   return <div />;
+  // }
 
   function FormRow() {
     return (
@@ -47,7 +58,7 @@ const ListaUsers = () => {
           item
           xs={6}
         >
-          {userList.map(({ nombre }) => (
+          {Object.values(userList).map(({ nombre }) => (
             <ListItem className={classes.List} key={nombre}>
               <ListItem alignItems='flex-start'>
                 <Paper className={classes.paper}>
