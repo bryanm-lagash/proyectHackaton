@@ -24,7 +24,7 @@ const Participantes = () => {
       <Header />
       <Container className={classes.container} maxWidth={false}>
         <InfoSorteo />
-        <CodeQR />
+        <CodeQR link='' />
         <Grid className={classes.grid}>
           <Paper elevation={0} className={classes.paper}>
             <ListaSorteos />

@@ -13,13 +13,12 @@ import Header from '../components/Header';
 
 import useStyles from './styles';
 
-let timer;
 const Lobby = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { ganador } = useSelector(({ sorteo }) => sorteo);
 
-  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
+  // const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
 
   useMount(() => {
     firebase
@@ -34,33 +33,7 @@ const Lobby = () => {
           dispatch(push(GANADOR));
         }
       });
-    // const { data } = await jsonApi().getUsers();
-    // console.log('ganador lobby', ganador);
-
-    // if (ganador !== null) {
-    //   dispatch(push(GANADOR));
-    // }
   });
-  // const handleApi = async () => {
-  //   const { data } = await jsonApi().getGanador();
-
-  //   if (data) {
-  //     dispatch(push(GANADOR));
-
-  //     return true;
-  //   }
-
-  //   return false;
-  // };
-
-  // timer = setInterval(() => {
-  //   if (!handleApi()) {
-  //     clearTimer();
-  //   }
-  // }, 2000);
-  // const clearTimer = () => {
-  //   clearInterval(timer);
-  // };
 
   return (
     <Container className={classes.container} maxWidth={false}>

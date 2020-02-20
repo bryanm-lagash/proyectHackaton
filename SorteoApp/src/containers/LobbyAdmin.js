@@ -16,7 +16,7 @@ import useStyles from './styles';
 const LobbyAdmin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userList, ganador } = useSelector(({ sorteo }) => sorteo);
+  const { userList, ganador, dataForm } = useSelector(({ sorteo }) => sorteo);
 
   const handleGoBack = useCallback(async () => {
     // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
@@ -40,7 +40,7 @@ const LobbyAdmin = () => {
       <Header />
       <div style={{ textAlign: 'center' }}>
         <InfoSorteo />
-        <CodeQR />
+        <CodeQR link='' />
       </div>
       <div>
         <Container className={classes.container} maxWidth={false}>
