@@ -18,31 +18,23 @@ const INITIAL_STATE = {
 };
 
 const setData = produce((draft, { data }) => {
-  // console.log('data reducer', data);
-
   draft.dataForm = data;
 });
 
 const setDataUser = produce((draft, { data }) => {
-  // console.log('data user reducer', data);
   draft.userList = data;
 });
 
 const setGanador = produce((draft, { data }) => {
-  // draft.ganador = data;
-  console.log('reducer setGanador', data);
   draft.ganador = data[Math.floor(Math.random() * data.length)].nombre;
-  // console.log('setganador', draft.ganador);
 });
 
 const setListaSorteos = produce((draft, { data }) => {
   draft.listaSorteo = data;
-  console.log('reducerrrrrrrr', data);
 });
 
 const identificarSorteoId = produce((draft, { data }) => {
   draft.idSorteo = data;
-  console.log('ID DEL SORTEO', data);
 });
 
 const reducer = createReducer(INITIAL_STATE, {

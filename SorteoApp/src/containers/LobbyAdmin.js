@@ -10,7 +10,6 @@ import CodeQR from '../components/QRcode';
 import { setGanador } from '../actions/sorteo';
 import Header from '../components/Header';
 import jsonApi from '../services/jsonApi';
-import useMount from '../hooks/useMount';
 
 import useStyles from './styles';
 
@@ -19,18 +18,7 @@ const LobbyAdmin = () => {
   const dispatch = useDispatch();
   const { userList, ganador, idSorteo } = useSelector(({ sorteo }) => sorteo);
 
-  // useMount(() => {
-  //   console.log('sueMount lista', userList);
-
-  //   if (userList.length !== 0) {
-  //     dispatch(setGanador(Object.values(userList)));
-  //     console.log('useMount ganador', ganador);
-  //   }
-  // });
-
   useEffect(() => {
-    console.log('sueMount lista', userList);
-
     if (userList.length !== 0) {
       dispatch(setGanador(Object.values(userList)));
       console.log('useMount ganador', ganador);
@@ -38,18 +26,6 @@ const LobbyAdmin = () => {
   });
 
   const handleGoBack = useCallback(async () => {
-    // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
-    // console.log('botton lobby', userList);
-    // if (userList !== null) {
-    //   // new Promise((resolv, reaje) => {
-    //   //   dispatch(setGanador(Object.values(userList)));
-    //   // })
-    //   //   .then(() => {
-    //   //     jsonApi().ganadorSet({ nombre: ganador });
-    //   //     dispatch(push(GANADOR));
-    //   //   })
-    //   //   .catch(() => {});
-    // }
     if (ganador !== '') {
       await jsonApi().ganadorSet({ nombre: ganador, idSorteo });
       dispatch(push(GANADOR));

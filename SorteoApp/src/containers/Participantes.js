@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Grid, Paper, Button } from '@material-ui/core';
+import React from 'react';
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
+import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
-import jsonApi from '../services/jsonApi';
 import InfoSorteo from '../components/InfoSorteo';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
@@ -14,36 +14,30 @@ import { INSCRIPCION } from '../routes/paths';
 import useStyles from './styles';
 
 const Participantes = props => {
-  const listaS = [];
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { listaSorteo } = useSelector(({ sorteo }) => sorteo);
 
   const handleNavigate = id => {
     const url = `${INSCRIPCION}/${id}`;
 
     dispatch(identificarSorteoId(id));
-
-    console.log('ID DEL SORTEOO ACAA', identificarSorteoId);
-
-    // window.location.href = url;
     dispatch(push(url));
   };
 
   useMount(async () => {
-    const data = await jsonApi().getSorteo();
-
     console.log(props.match.params);
+    firebase
+      .database()
+      .ref('sorteo/')
+      .on('value', snap => {
+        const sorteos = snap.val();
 
-    if (data !== null) {
-      dispatch(setListaSorteos(data.data));
-
-      console.log('SORTEOS COMPARE', data.data);
-    }
+        if (sorteos !== null) {
+          dispatch(setListaSorteos(Object.values(sorteos)));
+        }
+      });
   });
-
-  const { listaSorteo } = useSelector(({ sorteo }) => sorteo);
-
-  console.log('PARTICIPANTES DESDE HOOOME', listaSorteo);
 
   if (listaSorteo === undefined || listaSorteo === null) {
     return <div />;
@@ -53,7 +47,6 @@ const Participantes = props => {
     <div>
       <Header />
       <div width='1000px'>
-        <InfoSorteo />
         <CodeQR link='' />
         {Object.values(listaSorteo).map(sorteo => (
           <div

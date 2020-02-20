@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { goBack, push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
@@ -26,8 +26,6 @@ const Lobby = () => {
       .equalTo(idSorteo)
       .on('value', snap => {
         const users = snap.val();
-
-        console.log('ganador lobby', users);
 
         if (users !== null) {
           dispatch(setGanador(Object.values(users)));

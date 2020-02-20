@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,7 +8,6 @@ import { push } from 'connected-react-router';
 import { Container, Grid, Paper } from '@material-ui/core';
 
 import useMount from '../hooks/useMount';
-import { identificarSorteoId, configuracionSorteo } from '../actions/sorteo';
 import { LOBBY } from '../routes/paths';
 import Header from '../components/Header';
 import InfoSorteo from '../components/InfoSorteo';
@@ -19,37 +18,26 @@ import useStyles from './styles';
 const uuidv4 = require('uuid/v4');
 
 const Inscripcion = props => {
-  useMount(() => {
-    console.log(props.match.params);
-  });
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
-  // const handleData = useCallback(data => dispatch(configuracionSorteo(data)), [
-  //   dispatch
-  // ]);
-
   const { idSorteo } = useSelector(({ sorteo }) => sorteo);
 
-  console.log(`ESTE WACHOO${idSorteo}`);
+  useMount(() => {
+    console.log(props.match.params);
+  });
 
   const onSubmit = async data => {
     const idNueva = uuidv4();
 
     data.id = idNueva;
-    console.log(idSorteo);
     data.idSorteo = idSorteo;
     data.idSorteo = idSorteo;
-    console.log(data);
     const { status } = await jsonApi().addUsers(data);
-
-    console.log('EL NUEVOO', status);
 
     if (status === 200) {
       dispatch(push(LOBBY));
     }
-
-    // handleData(data);
   };
 
   const classes = useStyles();
