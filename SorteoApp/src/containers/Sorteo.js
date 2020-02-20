@@ -55,11 +55,11 @@ const Sorteo = () => {
 
       data.id = idNueva;
 
-      console.log('recibe', data);
+      // console.log('recibe', data);
       // const indice = datosApi.findIndex(element => element.email === nameObject);
       const { status } = await jsonApi().crearSorteo(data);
 
-      console.log(status);
+      // console.log(status);
 
       if (status === 200) {
         dispatch(push(LOBBY_ADMIN));

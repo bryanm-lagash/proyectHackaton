@@ -8,11 +8,6 @@ const config = {
 const createApi = () => {
   const { get, post } = create(config);
 
-  const setSorteo = data =>
-    post('createDraw', data => {
-      console.log(data);
-    });
-
   const crearSorteo = data => post('sorteo.json', data);
   const getUsers = () => get('users.json');
   const getSorteo = () => get('sorteo.json');
@@ -24,15 +19,14 @@ const createApi = () => {
   const getGanador = () => get('ganadores/set.json');
 
   return {
-    setSorteo,
     crearSorteo,
     getUsers,
     getSorteo,
     addUsers,
     ganadores,
+    ganadorSet,
     getQR,
-    getGanador,
-    ganadorSet
+    getGanador
   };
 };
 

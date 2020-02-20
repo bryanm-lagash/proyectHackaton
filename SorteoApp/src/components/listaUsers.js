@@ -18,7 +18,7 @@ const ListaUsers = () => {
 
   const { userList } = useSelector(({ sorteo }) => sorteo);
 
-  console.log('dataform ', userList);
+  // console.log('dataform ', userList);
   useMount(async () => {
     firebase
       .database()
@@ -28,7 +28,7 @@ const ListaUsers = () => {
 
         if (users !== null) {
           dispatch(setUserList(Object.values(users.add)));
-          console.log('listausers', Object.keys(Object.values(users)[0])[1]);
+          // console.log('listausers', Object.keys(Object.values(users)[0])[1]);
         }
       });
     // const { data } = await jsonApi().getUsers();
