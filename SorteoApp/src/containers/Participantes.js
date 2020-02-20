@@ -24,13 +24,11 @@ const Participantes = () => {
     window.location.href = url;
   };
 
-  const [listaState, setListaState] = useState();
-
   useMount(async () => {
     const data = await jsonApi().getSorteo();
 
     dispatch(setListaSorteos(data.data));
-    setListaState(data.data);
+
     console.log('SORTEOS COMPARE', data.data);
   });
 
