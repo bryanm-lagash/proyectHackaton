@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, List, ListItem, ListItemText } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { goBack } from 'connected-react-router';
+// import { goBack } from 'connected-react-router';
 import Paper from '@material-ui/core/Paper';
 
 import { configuracionSorteo } from '../actions/sorteo';
@@ -11,21 +11,33 @@ import useStyles from '../containers/styles';
 
 const InfoSorteo = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const { dataForm } = useSelector(({ sorteo }) => sorteo);
+  const [sorteos, setSorteos] = useState([]);
 
-  // console.log('dataform ', dataForm);
   useMount(async () => {
-    const { data } = await jsonApi().getSorteo();
+    const data = await jsonApi().getSorteo();
 
-    dispatch(configuracionSorteo(data));
-    // console.log(data);
+    setSorteos(data.data);
   });
 
+  if (sorteos === undefined) {
+    return <div />;
+  }
+
   return (
-    <Container className={classes.container} maxWidth={false}>
-      <div className={classes.List}>
+    <Container className={classes. } maxWidth={false}>
+      {Object.values(sorteos).map((sorteo, i) => {
+        if (sorteo.id === '47f46380-2cb6-4692-8fe8-84cffe4c0b9a') {
+          return (
+            <div>
+              <h2>{sorteo.nombre_sorteo}</h2>
+              <h5>{sorteo.nombre}</h5>
+              <p>{sorteo.id}</p>
+            </div>
+          );
+        }
+      })}
+      {/* <div className={classes.List}>
         {Array.isArray(dataForm) &&
           dataForm.map(({ nombre_sorteo, minimo_participantes }) => (
             <div
@@ -44,7 +56,7 @@ const InfoSorteo = () => {
               </Paper>
             </div>
           ))}
-      </div>
+      </div> */}
     </Container>
   );
 };
