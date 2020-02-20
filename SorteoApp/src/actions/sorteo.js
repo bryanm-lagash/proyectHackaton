@@ -5,7 +5,8 @@ const { Types, Creators } = createActions(
     configuracionSorteo: ['data'],
     setUserList: ['data'],
     setGanador: ['data'],
-    setListaSorteos: ['data']
+    setListaSorteos: ['data'],
+    identificarSorteoId: ['data']
   },
   {
     prefix: 'SORTEO/'
@@ -16,14 +17,16 @@ const {
   configuracionSorteo,
   setUserList,
   setGanador,
-  setListaSorteos
+  setListaSorteos,
+  identificarSorteoId
 } = Creators;
 
 const {
   CONFIGURACION_SORTEO,
   SET_USER_LIST,
   SET_GANADOR,
-  SET_LISTA_SORTEOS
+  SET_LISTA_SORTEOS,
+  IDENTIFICAR_SORTEO_ID
 } = Types;
 
 export {
@@ -34,5 +37,7 @@ export {
   setGanador,
   SET_GANADOR,
   setListaSorteos,
-  SET_LISTA_SORTEOS
+  SET_LISTA_SORTEOS,
+  identificarSorteoId,
+  IDENTIFICAR_SORTEO_ID
 };

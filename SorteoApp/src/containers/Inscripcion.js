@@ -1,17 +1,17 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment, useCallback, useMount } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useForm from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Container, Grid, Paper } from '@material-ui/core';
 
+import { identificarSorteoId, configuracionSorteo } from '../actions/sorteo';
 import { LOBBY } from '../routes/paths';
 import Header from '../components/Header';
 import InfoSorteo from '../components/InfoSorteo';
 import jsonApi from '../services/jsonApi';
-import { configuracionSorteo } from '../actions/sorteo';
 
 import useStyles from './styles';
 
@@ -21,29 +21,38 @@ const Inscripcion = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
-  const handleData = useCallback(data => dispatch(configuracionSorteo(data)), [
-    dispatch
-  ]);
+  // const handleData = useCallback(data => dispatch(configuracionSorteo(data)), [
+  //   dispatch
+  // ]);
+
+  const { idSorteo } = useSelector(({ sorteo }) => sorteo);
+
+  console.log(`ESTE WACHOO${idSorteo}`);
 
   const onSubmit = async data => {
     const idNueva = uuidv4();
-    const idSorteo = uuidv4();
 
     data.id = idNueva;
+    console.log(idSorteo);
     data.idSorteo = idSorteo;
-    // console.log(data);
+    data.idSorteo = idSorteo;
+    console.log(data);
     const { status } = await jsonApi().addUsers(data);
 
-    // console.log(status);
+    console.log('EL NUEVOO', status);
 
     if (status === 200) {
       dispatch(push(LOBBY));
     }
 
-    handleData(data);
+    // handleData(data);
   };
 
   const classes = useStyles();
+
+  if (idSorteo === '') {
+    return <div />;
+  }
 
   return (
     <div>

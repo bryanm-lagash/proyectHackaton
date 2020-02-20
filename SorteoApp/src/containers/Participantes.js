@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Grid, Paper, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import useMount from '../hooks/useMount';
 import jsonApi from '../services/jsonApi';
@@ -8,7 +9,7 @@ import InfoSorteo from '../components/InfoSorteo';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
 import ListaSorteos from '../components/listaSorteos';
-import { setListaSorteos } from '../actions/sorteo';
+import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
 import { INSCRIPCION } from '../routes/paths';
 
 import useStyles from './styles';
@@ -21,7 +22,12 @@ const Participantes = () => {
   const handleNavigate = id => {
     const url = `${INSCRIPCION}/${id}`;
 
-    window.location.href = url;
+    dispatch(identificarSorteoId(id));
+
+    console.log('ID DEL SORTEOO ACAA', identificarSorteoId);
+
+    // window.location.href = url;
+    dispatch(push(url));
   };
 
   useMount(async () => {
@@ -35,11 +41,6 @@ const Participantes = () => {
   const { listaSorteo } = useSelector(({ sorteo }) => sorteo);
 
   console.log('PARTICIPANTES DESDE HOOOME', listaSorteo);
-  const sorteos = [
-    { id: 1, nombre: 'Futbol a las 15:00' },
-    { id: 2, nombre: 'Lava la Loza' },
-    { id: 3, nombre: 'pinpong' }
-  ];
 
   if (listaSorteo === undefined) {
     return <div />;
