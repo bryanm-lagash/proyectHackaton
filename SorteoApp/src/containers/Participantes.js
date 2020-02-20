@@ -14,7 +14,7 @@ import { INSCRIPCION } from '../routes/paths';
 
 import useStyles from './styles';
 
-const Participantes = () => {
+const Participantes = props => {
   const listaS = [];
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -33,16 +33,20 @@ const Participantes = () => {
   useMount(async () => {
     const data = await jsonApi().getSorteo();
 
-    dispatch(setListaSorteos(data.data));
+    console.log(props.match.params);
 
-    console.log('SORTEOS COMPARE', data.data);
+    if (data !== null) {
+      dispatch(setListaSorteos(data.data));
+
+      console.log('SORTEOS COMPARE', data.data);
+    }
   });
 
   const { listaSorteo } = useSelector(({ sorteo }) => sorteo);
 
   console.log('PARTICIPANTES DESDE HOOOME', listaSorteo);
 
-  if (listaSorteo === undefined) {
+  if (listaSorteo === undefined || listaSorteo === null) {
     return <div />;
   }
 

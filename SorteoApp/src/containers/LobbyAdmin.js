@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Button, Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
@@ -10,29 +10,50 @@ import CodeQR from '../components/QRcode';
 import { setGanador } from '../actions/sorteo';
 import Header from '../components/Header';
 import jsonApi from '../services/jsonApi';
+import useMount from '../hooks/useMount';
 
 import useStyles from './styles';
 
 const LobbyAdmin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userList, ganador, dataForm } = useSelector(({ sorteo }) => sorteo);
+  const { userList, ganador, idSorteo } = useSelector(({ sorteo }) => sorteo);
+
+  // useMount(() => {
+  //   console.log('sueMount lista', userList);
+
+  //   if (userList.length !== 0) {
+  //     dispatch(setGanador(Object.values(userList)));
+  //     console.log('useMount ganador', ganador);
+  //   }
+  // });
+
+  useEffect(() => {
+    console.log('sueMount lista', userList);
+
+    if (userList.length !== 0) {
+      dispatch(setGanador(Object.values(userList)));
+      console.log('useMount ganador', ganador);
+    }
+  });
 
   const handleGoBack = useCallback(async () => {
     // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
-
-    // dispatch(setGanador(win));
-    console.log('botton lobby', userList);
-
-    if (userList !== null) {
-      dispatch(setGanador(Object.values(userList)));
+    // console.log('botton lobby', userList);
+    // if (userList !== null) {
+    //   // new Promise((resolv, reaje) => {
+    //   //   dispatch(setGanador(Object.values(userList)));
+    //   // })
+    //   //   .then(() => {
+    //   //     jsonApi().ganadorSet({ nombre: ganador });
+    //   //     dispatch(push(GANADOR));
+    //   //   })
+    //   //   .catch(() => {});
+    // }
+    if (ganador !== '') {
+      await jsonApi().ganadorSet({ nombre: ganador, idSorteo });
       dispatch(push(GANADOR));
     }
-
-    // if (ganador !== '') {
-    //   await jsonApi().ganadorSet(ganador);
-    //   dispatch(push(GANADOR));
-    // }
   });
 
   return (

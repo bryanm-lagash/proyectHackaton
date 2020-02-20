@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { LOBBY_ADMIN, HOME } from '../routes/paths';
 import jsonApi from '../services/jsonApi';
-import { configuracionSorteo } from '../actions/sorteo';
+import { configuracionSorteo, identificarSorteoId } from '../actions/sorteo';
 
 import useStyles from './styles';
 
@@ -20,19 +20,6 @@ const uuidv4 = require('uuid/v4');
 const Sorteo = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
-
-  const [formState, setFormState] = useState({
-    formData: {
-      id: '',
-      nombreAdmin: '',
-      nombreSorteo: '',
-      minimoParticipantes: 0,
-      cantidadGanadores: 0
-    }
-    // valid: false
-  });
-
-  // const onChangeHandler = () => {};
 
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -55,13 +42,10 @@ const Sorteo = () => {
 
       data.id = idNueva;
 
-      // console.log('recibe', data);
-      // const indice = datosApi.findIndex(element => element.email === nameObject);
       const { status } = await jsonApi().crearSorteo(data);
 
-      // console.log(status);
-
       if (status === 200) {
+        dispatch(identificarSorteoId(data.id));
         dispatch(push(LOBBY_ADMIN));
       }
 

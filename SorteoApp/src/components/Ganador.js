@@ -25,9 +25,9 @@ const Ganador = () => {
     //   .on('child_added', snapshot => {
     //     console.log(snapshot.key);
     //   });
-    if (ganador !== '') {
-      await jsonApi().ganadorSet({ nombre: ganador });
-    }
+    // if (ganador !== '') {
+    //   await jsonApi().ganadorSet({ nombre: ganador });
+    // }
 
     firebase
       .database()

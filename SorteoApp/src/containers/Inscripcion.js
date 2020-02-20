@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMount } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Container, Grid, Paper } from '@material-ui/core';
 
+import useMount from '../hooks/useMount';
 import { identificarSorteoId, configuracionSorteo } from '../actions/sorteo';
 import { LOBBY } from '../routes/paths';
 import Header from '../components/Header';
@@ -17,7 +18,10 @@ import useStyles from './styles';
 
 const uuidv4 = require('uuid/v4');
 
-const Inscripcion = () => {
+const Inscripcion = props => {
+  useMount(() => {
+    console.log(props.match.params);
+  });
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
