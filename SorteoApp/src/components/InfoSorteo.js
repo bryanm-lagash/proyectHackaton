@@ -25,7 +25,7 @@ const InfoSorteo = () => {
   }
 
   return (
-    <Container className={classes. } maxWidth={false}>
+    <Container className={classes.container} maxWidth={false}>
       {Object.values(sorteos).map((sorteo, i) => {
         if (sorteo.id === '47f46380-2cb6-4692-8fe8-84cffe4c0b9a') {
           return (
