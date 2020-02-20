@@ -4,13 +4,17 @@ import produce from 'immer';
 import {
   CONFIGURACION_SORTEO,
   SET_USER_LIST,
-  SET_GANADOR
+  SET_GANADOR,
+  SET_LISTA_SORTEOS,
+  IDENTIFICAR_SORTEO_ID
 } from '../actions/sorteo';
 
 const INITIAL_STATE = {
   dataForm: [],
   userList: [],
-  ganador: ''
+  ganador: '',
+  listaSorteos: [],
+  idSorteo: ''
 };
 
 const setData = produce((draft, { data }) => {
@@ -30,10 +34,22 @@ const setGanador = produce((draft, { data }) => {
   // console.log('setganador', draft.ganador);
 });
 
+const setListaSorteos = produce((draft, { data }) => {
+  draft.listaSorteo = data;
+  console.log('reducerrrrrrrr', data);
+});
+
+const identificarSorteoId = produce((draft, { data }) => {
+  draft.idSorteo = data;
+  console.log('ID DEL SORTEO', data);
+});
+
 const reducer = createReducer(INITIAL_STATE, {
   [CONFIGURACION_SORTEO]: setData,
   [SET_USER_LIST]: setDataUser,
-  [SET_GANADOR]: setGanador
+  [SET_GANADOR]: setGanador,
+  [SET_LISTA_SORTEOS]: setListaSorteos,
+  [IDENTIFICAR_SORTEO_ID]: identificarSorteoId
 });
 
 export default reducer;

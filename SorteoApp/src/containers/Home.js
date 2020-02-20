@@ -8,6 +8,9 @@ import BackgroundLogo from '../resources/Background_logo.png';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { SORTEO } from '../routes/paths';
+import jsonApi from '../services/jsonApi';
+import useMount from '../hooks/useMount';
+import { setListaSorteos } from '../actions/sorteo';
 
 import useStyles from './styles';
 
@@ -17,6 +20,14 @@ const Home = () => {
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
   ]);
+
+  useMount(async () => {
+    const data = await jsonApi().getSorteo();
+
+    dispatch(setListaSorteos(data.data));
+
+    console.log('SORTEOS COMPARE HOMER', data.data);
+  });
 
   return (
     <div>
