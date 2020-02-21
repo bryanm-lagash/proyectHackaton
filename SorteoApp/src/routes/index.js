@@ -10,8 +10,7 @@ import {
   Ganador,
   Lobby,
   SorteoFutbol,
-  FormFutbol,
-  Root
+  FormFutbol
 } from '../containers';
 
 import {
@@ -23,8 +22,7 @@ import {
   GANADOR,
   LOBBY,
   SORTEO_FUTBOL,
-  FORM_FUTBOL,
-  ROOT
+  FORM_FUTBOL
 } from './paths';
 
 const Routes = () => (
@@ -38,7 +36,6 @@ const Routes = () => (
     <Route path={LOBBY} component={Lobby} />
     <Route path={SORTEO_FUTBOL} component={SorteoFutbol} />
     <Route path={FORM_FUTBOL} component={FormFutbol} />
-    <Route path={ROOT} component={Root} />
   </Switch>
 );
 

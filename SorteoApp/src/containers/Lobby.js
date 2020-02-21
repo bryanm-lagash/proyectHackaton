@@ -1,66 +1,38 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { goBack, push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
-import jsonApi from '../services/jsonApi';
 import InfoSorteo from '../components/InfoSorteo';
 import ListaUsers from '../components/listaUsers';
 import { GANADOR } from '../routes/paths';
 import Header from '../components/Header';
+import { setGanador } from '../actions/sorteo';
 
 import useStyles from './styles';
 
-let timer;
 const Lobby = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { ganador } = useSelector(({ sorteo }) => sorteo);
-
-  const handleGoBack = useCallback(() => dispatch(goBack()), [dispatch]);
+  const { idSorteo } = useSelector(({ sorteo }) => sorteo);
 
   useMount(() => {
     firebase
       .database()
       .ref('ganador/')
+      .orderByChild('idSorteo')
+      .equalTo(idSorteo)
       .on('value', snap => {
         const users = snap.val();
 
-        // console.log('ganador lobby', users);
-
         if (users !== null) {
+          dispatch(setGanador(Object.values(users)));
           dispatch(push(GANADOR));
         }
       });
-    // const { data } = await jsonApi().getUsers();
-    // console.log('ganador lobby', ganador);
-
-    // if (ganador !== null) {
-    //   dispatch(push(GANADOR));
-    // }
   });
-  // const handleApi = async () => {
-  //   const { data } = await jsonApi().getGanador();
-
-  //   if (data) {
-  //     dispatch(push(GANADOR));
-
-  //     return true;
-  //   }
-
-  //   return false;
-  // };
-
-  // timer = setInterval(() => {
-  //   if (!handleApi()) {
-  //     clearTimer();
-  //   }
-  // }, 2000);
-  // const clearTimer = () => {
-  //   clearInterval(timer);
-  // };
 
   return (
     <Container className={classes.container} maxWidth={false}>

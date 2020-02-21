@@ -1,50 +1,45 @@
 import React from 'react';
-import { Container, List, ListItem, ListItemText } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { goBack } from 'connected-react-router';
-import Paper from '@material-ui/core/Paper';
+import { Container } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import * as firebase from 'firebase';
 
-import { configuracionSorteo } from '../actions/sorteo';
 import useMount from '../hooks/useMount';
-import jsonApi from '../services/jsonApi';
 import useStyles from '../containers/styles';
+import { configuracionSorteo } from '../actions/sorteo';
 
 const InfoSorteo = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { idSorteo, dataForm } = useSelector(({ sorteo }) => sorteo);
 
-  const { dataForm } = useSelector(({ sorteo }) => sorteo);
-
-  // console.log('dataform ', dataForm);
   useMount(async () => {
-    const { data } = await jsonApi().getSorteo();
+    firebase
+      .database()
+      .ref('sorteo/')
+      .orderByChild('id')
+      .equalTo(idSorteo)
+      .on('value', snap => {
+        const infoSorteo = snap.val();
 
-    dispatch(configuracionSorteo(data));
-    // console.log(data);
+        if (infoSorteo !== null) {
+          dispatch(configuracionSorteo(Object.values(infoSorteo)));
+        }
+      });
   });
+
+  if (dataForm === undefined) {
+    return <div />;
+  }
 
   return (
     <Container className={classes.container} maxWidth={false}>
-      <div className={classes.List}>
-        {Array.isArray(dataForm) &&
-          dataForm.map(({ nombre_sorteo, minimo_participantes }) => (
-            <div
-              style={{ textAlign: 'center' }}
-              className={classes.List}
-              key={nombre_sorteo}
-            >
-              <font face='Roboto' size=' 7'>
-                {nombre_sorteo}
-              </font>
-              <h1 />
-              <Paper elevation={0}>
-                <ListItemText
-                  primary={`${'Numero minimo de participantes: '} ${minimo_participantes}`}
-                />
-              </Paper>
-            </div>
-          ))}
-      </div>
+      {Object.values(dataForm).map((sorteo, i) => (
+        <div>
+          <h2>Nombre Sorteo: {sorteo.nombre_sorteo}</h2>
+          <h5>Creador: {sorteo.nombre}</h5>
+          <p>ID: {sorteo.id}</p>
+        </div>
+      ))}
     </Container>
   );
 };

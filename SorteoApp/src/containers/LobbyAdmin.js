@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Button, Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
@@ -16,23 +16,20 @@ import useStyles from './styles';
 const LobbyAdmin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userList, ganador } = useSelector(({ sorteo }) => sorteo);
+  const { userList, ganador, idSorteo } = useSelector(({ sorteo }) => sorteo);
+
+  useEffect(() => {
+    if (userList.length !== 0) {
+      dispatch(setGanador(Object.values(userList)));
+      console.log('useMount ganador', ganador);
+    }
+  });
 
   const handleGoBack = useCallback(async () => {
-    // const win = userList[Math.floor(Math.random() * userList.length)].nombre;
-
-    // dispatch(setGanador(win));
-    console.log('botton lobby', userList);
-
-    if (userList !== null) {
-      dispatch(setGanador(Object.values(userList)));
+    if (ganador !== '') {
+      await jsonApi().ganadorSet({ nombre: ganador, idSorteo });
       dispatch(push(GANADOR));
     }
-
-    // if (ganador !== '') {
-    //   await jsonApi().ganadorSet(ganador);
-    //   dispatch(push(GANADOR));
-    // }
   });
 
   return (

@@ -15,23 +15,21 @@ firebase.initializeApp(window.firebaseConfig);
 const ListaUsers = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { userList, idSorteo } = useSelector(({ sorteo }) => sorteo);
 
-  const { userList } = useSelector(({ sorteo }) => sorteo);
-
-  // console.log('dataform ', userList);
   useMount(async () => {
     firebase
       .database()
-      .ref('users/')
+      .ref('users/add/')
+      .orderByChild('idSorteo')
+      .equalTo(idSorteo)
       .on('value', snap => {
         const users = snap.val();
 
         if (users !== null) {
-          dispatch(setUserList(Object.values(users.add)));
-          // console.log('listausers', Object.keys(Object.values(users)[0])[1]);
+          dispatch(setUserList(Object.values(users)));
         }
       });
-    // const { data } = await jsonApi().getUsers();
   });
 
   function FormRow() {
@@ -47,11 +45,11 @@ const ListaUsers = () => {
           item
           xs={6}
         >
-          {userList.map(({ nombre }) => (
+          {Object.values(userList).map(({ nombre }) => (
             <ListItem className={classes.List} key={nombre}>
               <ListItem alignItems='flex-start'>
-                <Paper className={classes.paper}>
-                  <ListItemText primary={`${nombre}`} />
+                <Paper className='paper'>
+                  <ListItemText className='icono' primary={`${nombre}`} />
                 </Paper>
               </ListItem>
             </ListItem>
@@ -62,20 +60,27 @@ const ListaUsers = () => {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <font face='Roboto' size=' 7'>
-        Lista de Usuarios
-      </font>
-      <Container className={classes.container} maxWidth={false}>
-        <div className={classes.root}>
-          <Grid container spacing={1}>
-            <Grid container item xs={12} spacing={3}>
-              <FormRow />
-            </Grid>
-          </Grid>
-        </div>
-        <br />
-      </Container>
+    <div className='caja container'>
+      <div className='cart2 class="row">'>
+        <Container className='raduis col-md-4'>
+          <div style={{ textAlign: 'center' }}>
+            <font className='titulo' face='Roboto' size=' 7'>
+              Lista de Usuarios
+              <p className='numeroParticipantes'>{`Numero de participantes ${userList.length}`}</p>
+            </font>
+            <Container className={classes.container} maxWidth={false}>
+              <div className={classes.root}>
+                <Grid container spacing={1}>
+                  <Grid container item xs={12} spacing={3}>
+                    <FormRow />
+                  </Grid>
+                </Grid>
+              </div>
+              <br />
+            </Container>
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };
