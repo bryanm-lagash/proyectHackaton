@@ -103,32 +103,31 @@ const Home = () => {
             </Button>
           </MDBView>
         </div>
-      </MediaQuery>
-
-      <div
-        style={{
-          width: '100%',
-          margin: '10px',
-
-          height: '1%',
-          textAlign: 'center'
-        }}
-      >
-        <Button
+        <div
           style={{
-            width: '75%',
-            heigth: '500px',
-            marginTop: '35px',
-            marginBottom: '75px'
+            width: '100%',
+            margin: '10px',
+
+            height: '1%',
+            textAlign: 'center'
           }}
-          className={classes.button}
-          color='primary'
-          variant='contained'
-          onClick={handleNavigate('/participantes')}
         >
-          Ver sorteos disponibles
-        </Button>
-      </div>
+          <Button
+            style={{
+              width: '75%',
+              heigth: '500px',
+              marginTop: '35px',
+              marginBottom: '75px'
+            }}
+            className={classes.button}
+            color='primary'
+            variant='contained'
+            onClick={handleNavigate('/participantes')}
+          >
+            Ver sorteos disponibles
+          </Button>
+        </div>
+      </MediaQuery>
 
       {/* {VERSION DESKTOPP */}
       <MediaQuery minWidth='1367px'>
