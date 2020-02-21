@@ -30,27 +30,18 @@ const Sorteo = () => {
   const classes = useStyles();
 
   const onSubmit = async data => {
-    const minimoParticipantes = parseInt(data.minimo);
-    const cantidadSeleccionados = parseInt(data.seleccionados);
+    const idNueva = uuidv4();
 
-    if (minimoParticipantes <= cantidadSeleccionados) {
-      alert(
-        'El numero de Seleccionados debe ser menor a la cantidad minima de participantes'
-      );
-    } else {
-      const idNueva = uuidv4();
+    data.id = idNueva;
 
-      data.id = idNueva;
+    const { status } = await jsonApi().crearSorteo(data);
 
-      const { status } = await jsonApi().crearSorteo(data);
-
-      if (status === 200) {
-        dispatch(identificarSorteoId(data.id));
-        dispatch(push(LOBBY_ADMIN));
-      }
-
-      handleData(data);
+    if (status === 200) {
+      dispatch(identificarSorteoId(data.id));
+      dispatch(push(LOBBY_ADMIN));
     }
+
+    handleData(data);
   };
 
   return (
@@ -103,39 +94,6 @@ const Sorteo = () => {
                 />
                 {errors.firstName && errors.firstName.type === 'required' && (
                   <span>First name is required.</span>
-                )}
-
-                <TextField
-                  className={classes.item}
-                  id='minimo'
-                  label='Mínimo participantes'
-                  name='minimo'
-                  type='number'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  inputRef={register({ required: true, maxLength: 5, min: 2 })}
-                  fullWidth
-                  variant='outlined'
-                />
-                {errors.minimo && errors.minimo.type === 'required' && (
-                  <span role='alert'>Minimo de participantes requerido.</span>
-                )}
-                <TextField
-                  className={classes.item}
-                  id='seleccionados'
-                  label='Número ganadores'
-                  type='number'
-                  name='seleccionados'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  inputRef={register({ required: true, maxLength: 5, min: 1 })}
-                  fullWidth
-                  variant='outlined'
-                />
-                {errors.minimo && errors.minimo.type === 'required' && (
-                  <span role='alert'>Minimo de participantes requerido.</span>
                 )}
 
                 <Button

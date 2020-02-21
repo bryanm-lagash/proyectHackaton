@@ -35,9 +35,9 @@ const InfoSorteo = () => {
     <Container className={classes.container} maxWidth={false}>
       {Object.values(dataForm).map((sorteo, i) => (
         <div>
-          <h2>{sorteo.nombre_sorteo}</h2>
-          <h5>{sorteo.nombre}</h5>
-          <p>{sorteo.id}</p>
+          <h2>Nombre Sorteo: {sorteo.nombre_sorteo}</h2>
+          <h5>Creador: {sorteo.nombre}</h5>
+          <p>ID: {sorteo.id}</p>
         </div>
       ))}
     </Container>

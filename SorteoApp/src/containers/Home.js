@@ -3,6 +3,9 @@ import React, { useCallback } from 'react';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import { Animate } from 'animate.css-react';
+import MediaQuery from 'react-responsive';
+import { Random } from 'react-animated-text';
 
 import BackgroundLogo from '../resources/Background_logo.png';
 import Footer from '../components/Footer';
@@ -32,19 +35,45 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <div style={{ textAlign: 'center' }}>
-        <img src={BackgroundLogo} style={{ position: 'relative', top: 60 }} />
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Button
-          className={classes.button}
-          color='primary'
-          variant='contained'
-          onClick={handleNavigate(SORTEO)}
-          style={{ position: 'relative', top: 120 }}
+
+      <MediaQuery maxWidth='550px'>
+        <div
+          style={{
+            width: '100%',
+            margin: '10px',
+
+            height: '1%',
+            textAlign: 'center'
+          }}
         >
-          Let's Go
-        </Button>
+          <Button
+            style={{ width: '75%', heigth: '500px', marginTop: '35px' }}
+            className={classes.button}
+            color='primary'
+            variant='contained'
+            // eslint-disable-next-line react/jsx-no-bind
+            onClick={handleNavigate('/participantes')}
+          >
+            Ver sorteos
+          </Button>
+          <br />
+          <Button
+            style={{ width: '75%', heigth: '500px', marginTop: '30px' }}
+            className={classes.button}
+            color='primary'
+            variant='contained'
+            // eslint-disable-next-line react/jsx-no-bind
+            onClick={handleNavigate('/sorteo')}
+          >
+            Crear sorteo
+          </Button>
+        </div>
+      </MediaQuery>
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src={BackgroundLogo}
+          style={{ position: 'relative', marginTop: '50px' }}
+        />
       </div>
 
       <Footer />
