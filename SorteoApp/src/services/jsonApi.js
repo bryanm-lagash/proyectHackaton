@@ -17,6 +17,7 @@ const createApi = () => {
 
   const getQR = () => get('getQR.json');
   const getGanador = () => get('ganadores/set.json');
+  const crearSorteoFutbol = data => post('sorteoFutbol.json', data);
 
   return {
     crearSorteo,
@@ -26,7 +27,8 @@ const createApi = () => {
     ganadores,
     ganadorSet,
     getQR,
-    getGanador
+    getGanador,
+    crearSorteoFutbol
   };
 };
 

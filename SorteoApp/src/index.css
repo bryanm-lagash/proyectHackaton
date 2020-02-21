@@ -67,3 +67,10 @@ body {
   margin-right: auto;
   position: relative;
 }
+
+.alertaError {
+  flex: initial;
+  color: red;
+  padding: 0;
+  font-size: 13px;
+}

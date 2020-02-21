@@ -57,7 +57,7 @@ const Sorteo = () => {
 
       // console.log('recibe', data);
       // const indice = datosApi.findIndex(element => element.email === nameObject);
-      const { status } = await jsonApi().crearSorteo(data);
+      const { status } = await jsonApi().crearSorteoFutbol(data);
 
       // console.log(status);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, List } from '@material-ui/core';
 import * as firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ const Ganador = () => {
   const { ganador } = useSelector(({ sorteo }) => sorteo);
   const dispatch = useDispatch();
   const [user, setUser] = useState();
+  const [cargando, guardarCargando] = useState(false);
 
   useMount(async () => {
     // console.log('api ganador', ganador);
@@ -44,6 +45,13 @@ const Ganador = () => {
         }
       });
   });
+
+  useEffect(() => {
+    guardarCargando(true);
+    setTimeout(() => {
+      guardarCargando(false);
+    }, 3000);
+  }, []);
 
   return (
     <Container

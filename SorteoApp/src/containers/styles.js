@@ -18,6 +18,21 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition: 'center'
     }
   },
+
+  grid2: {
+    display: 'flex',
+    height: '65vh',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      backgroundPosition: '25% 75%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundPosition: 'center'
+    },
+    marginTop: 50
+  },
+
   paper: {
     display: 'flex',
     flexDirection: 'row',
