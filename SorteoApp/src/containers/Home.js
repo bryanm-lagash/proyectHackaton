@@ -3,14 +3,17 @@ import React, { useCallback } from 'react';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
-import { Animate } from 'animate.css-react';
 import MediaQuery from 'react-responsive';
-import { Random } from 'react-animated-text';
+import { MDBView, MDBMask } from 'mdbreact';
 
-import BackgroundLogo from '../resources/Background_logo.png';
+import Tombola from '../resources/tombola.png';
+import PingPong from '../resources/pingpong.png';
+import Futbol from '../resources/futbol.png';
+import TombolaDesktop from '../resources/tombolaDesktop.png';
+import PingPongDesktop from '../resources/pingpongDesktop.png';
+import FutbolDesktop from '../resources/futbolDesktop.png';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { SORTEO } from '../routes/paths';
 import jsonApi from '../services/jsonApi';
 import useMount from '../hooks/useMount';
 import { setListaSorteos } from '../actions/sorteo';
@@ -36,46 +39,162 @@ const Home = () => {
     <div>
       <Header />
 
-      <MediaQuery maxWidth='550px'>
-        <div
-          style={{
-            width: '100%',
-            margin: '10px',
+      <MediaQuery maxWidth='1366px'>
+        {/* {Logo SORTEO */}
+        <div style={{ textAlign: 'center' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '210px',
+                width: '100%',
+                marginTop: '0px'
+              }}
+            >
+              <img src={Tombola} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Crear Sorteo Personalizado</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
+        </div>
 
-            height: '1%',
-            textAlign: 'center'
-          }}
-        >
-          <Button
-            style={{ width: '75%', heigth: '500px', marginTop: '35px' }}
-            className={classes.button}
-            color='primary'
-            variant='contained'
-            // eslint-disable-next-line react/jsx-no-bind
-            onClick={handleNavigate('/participantes')}
-          >
-            Ver sorteos
-          </Button>
-          <br />
-          <Button
-            style={{ width: '75%', heigth: '500px', marginTop: '30px' }}
-            className={classes.button}
-            color='primary'
-            variant='contained'
-            // eslint-disable-next-line react/jsx-no-bind
-            onClick={handleNavigate('/sorteo')}
-          >
-            Crear sorteo
-          </Button>
+        {/* {Logo Futbol */}
+        <div style={{ textAlign: 'center' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '210px',
+                width: '100%',
+                top: 0
+              }}
+            >
+              <img src={Futbol} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Crear 2 Equipos</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
+        </div>
+
+        {/* {Logo PINGPONG */}
+
+        <div style={{ textAlign: 'center' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '210px',
+                width: '100%',
+                top: 0
+              }}
+            >
+              <img src={PingPong} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Sortear PArejas de PingPong</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
         </div>
       </MediaQuery>
-      <div style={{ textAlign: 'center' }}>
-        <img
-          src={BackgroundLogo}
-          style={{ position: 'relative', marginTop: '50px' }}
-        />
+
+      <div
+        style={{
+          width: '100%',
+          margin: '10px',
+
+          height: '1%',
+          textAlign: 'center'
+        }}
+      >
+        <Button
+          style={{
+            width: '75%',
+            heigth: '500px',
+            marginTop: '35px',
+            marginBottom: '75px'
+          }}
+          className={classes.button}
+          color='primary'
+          variant='contained'
+          onClick={handleNavigate('/participantes')}
+        >
+          Ver sorteos disponibles
+        </Button>
       </div>
 
+      {/* {VERSION DESKTOPP */}
+      <MediaQuery minWidth='1367px'>
+        <div style={{ textAlign: 'center' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '380px',
+                width: '100%',
+                marginTop: '0px'
+              }}
+            >
+              <img src={TombolaDesktop} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Crear Sorteo Personalizado</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
+        </div>
+
+        {/* {Logo Futbol */}
+        <div style={{ textAlign: 'center' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '380px',
+                width: '100%',
+                top: 0
+              }}
+            >
+              <img src={FutbolDesktop} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Crear 2 Equipos</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
+        </div>
+
+        {/* {Logo PINGPONG */}
+
+        <div style={{ textAlign: 'center', marginBottom: '55px' }}>
+          <MDBView hover zoom>
+            <Button
+              href='/sorteo'
+              style={{
+                position: 'relative',
+                left: 0,
+                height: '380px',
+                width: '100%',
+                top: 0
+              }}
+            >
+              <img src={PingPongDesktop} />
+              <MDBMask className='flex-center' overlay='indigo-strong'>
+                <p className='white-text'>Sortear PArejas de PingPong</p>
+              </MDBMask>
+            </Button>
+          </MDBView>
+        </div>
+      </MediaQuery>
       <Footer />
     </div>
   );
