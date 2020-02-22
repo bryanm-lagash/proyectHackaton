@@ -32,6 +32,7 @@ const Routes = () => (
     <Route path={LOBBY_ADMIN} component={LobbyAdmin} />
     <Route path={PARTICIPANTES} component={Participantes} />
     <Route path={INSCRIPCION} component={Inscripcion} />
+    <Route path={`${INSCRIPCION}:id`} component={Inscripcion} />
     <Route path={GANADOR} component={Ganador} />
     <Route path={LOBBY} component={Lobby} />
     <Route path={SORTEO_FUTBOL} component={SorteoFutbol} />

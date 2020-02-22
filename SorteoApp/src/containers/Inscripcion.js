@@ -12,6 +12,7 @@ import { LOBBY } from '../routes/paths';
 import Header from '../components/Header';
 import InfoSorteo from '../components/InfoSorteo';
 import jsonApi from '../services/jsonApi';
+import { identificarSorteoId } from '../actions/sorteo';
 
 import useStyles from './styles';
 
@@ -25,6 +26,7 @@ const Inscripcion = props => {
 
   useMount(() => {
     console.log(props.match.params);
+    dispatch(identificarSorteoId(props.match.params.id));
   });
 
   const onSubmit = async data => {
@@ -32,7 +34,7 @@ const Inscripcion = props => {
 
     data.id = idNueva;
     data.idSorteo = idSorteo;
-    data.idSorteo = idSorteo;
+
     const { status } = await jsonApi().addUsers(data);
 
     if (status === 200) {
@@ -43,7 +45,41 @@ const Inscripcion = props => {
   const classes = useStyles();
 
   if (idSorteo === '') {
-    return <div />;
+    return (
+      <div>
+        <Header />
+        <Fragment>
+          <form className='App-Form' onSubmit={handleSubmit(onSubmit)}>
+            <Container className={classes.container} maxWidth={false}>
+              <Grid className={classes.grid}>
+                <Paper className={classes.paperForm}>
+                  <DialogTitle id='form-dialog-title'>
+                    <InfoSorteo id={props.match.params.id} />
+                  </DialogTitle>
+
+                  <TextField
+                    autoFocus
+                    margin='dense'
+                    id='firstName'
+                    name='nombre'
+                    label='Usuario Participante '
+                    type='text'
+                    //   defaultValue={open.first}
+                    fullWidth
+                    inputRef={register({ required: true, maxLength: 50 })}
+                    variant='outlined'
+                  />
+
+                  <Button type='submit' color='primary' variant='contained'>
+                    Save
+                  </Button>
+                </Paper>
+              </Grid>
+            </Container>
+          </form>
+        </Fragment>
+      </div>
+    );
   }
 
   return (

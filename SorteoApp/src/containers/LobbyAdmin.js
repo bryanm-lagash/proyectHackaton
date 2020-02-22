@@ -37,7 +37,7 @@ const LobbyAdmin = () => {
       <Header />
       <div style={{ textAlign: 'center' }}>
         <InfoSorteo />
-        <CodeQR link='' />
+        <CodeQR id={idSorteo} />
       </div>
       <div>
         <Container className={classes.container} maxWidth={false}>
