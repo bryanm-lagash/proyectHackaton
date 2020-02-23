@@ -8,5 +8,6 @@ export const GANADOR = '/ganador';
 export const LOBBY = '/lobby';
 export const SORTEO_FUTBOL = '/sorteoFutbol';
 export const FORM_FUTBOL = '/formFutbol';
+export const SORTEO_PING_PONG = '/sorteoPingPong';
 
 export const ROOT = '/root';

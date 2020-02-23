@@ -1,11 +1,12 @@
 import { createReducer } from 'reduxsauce';
 import produce from 'immer';
 
-import { EQUIPOS_FUTBOL } from '../actions/sorteoFutbol';
+import { EQUIPOS_FUTBOL, CAPITANES_EQUIPOS } from '../actions/sorteoFutbol';
 
 const INITIAL_STATE = {
   equipoA: [],
-  equipoB: []
+  equipoB: [],
+  capitanes: []
 };
 
 const calcularEquipos = produce((draft, { data }) => {
@@ -25,8 +26,18 @@ const calcularEquipos = produce((draft, { data }) => {
   }
 });
 
+const calculoCapitanes = produce((draft, { data }) => {
+  const capitanA =
+    data[0].equipoA[Math.floor(Math.random() * data[0].equipoA.length)].nombre;
+  const capitanB =
+    data[1].equipoB[Math.floor(Math.random() * data[1].equipoB.length)].nombre;
+
+  draft.capitanes = { capitanA, capitanB };
+});
+
 const reducer = createReducer(INITIAL_STATE, {
-  [EQUIPOS_FUTBOL]: calcularEquipos
+  [EQUIPOS_FUTBOL]: calcularEquipos,
+  [CAPITANES_EQUIPOS]: calculoCapitanes
 });
 
 export default reducer;
