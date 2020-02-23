@@ -16,6 +16,14 @@ const Header = () => {
     dispatch
   ]);
 
+  const estiloLetraMid = {
+    color: 'white',
+    fontFamily: 'New Century Schoolbook, serif',
+    fontWeight: 'bold',
+    fontSize: '15px',
+    marginTop: '10px'
+  };
+
   return (
     <AppBar position='static'>
       <Toolbar>
@@ -33,48 +41,22 @@ const Header = () => {
             <img src={Logo} />
           </Button>
         </Container>
-        <MediaQuery minWidth='550px'>
+
+        <MediaQuery minWidth='780px'>
           <Button onClick={handleNavigate('/')}>
-            {' '}
-            <p
-              style={{
-                color: 'white',
-                fontFamily: 'New Century Schoolbook, serif',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                marginTop: '10px'
-              }}
-            >
-              Home
-            </p>
+            <p style={estiloLetraMid}>Home</p>
           </Button>
           <Button onClick={handleNavigate('/participantes')}>
-            <p
-              style={{
-                color: 'white',
-                fontFamily: 'New Century Schoolbook, serif',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                marginTop: '10px',
-                marginLeft: 0
-              }}
-            >
-              Ver Sorteos
-            </p>
+            <p style={estiloLetraMid}>Ver Sorteos</p>
           </Button>
           <Button onClick={handleNavigate('/sorteo')}>
-            {' '}
-            <p
-              style={{
-                color: 'white',
-                fontFamily: 'New Century Schoolbook, serif',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                marginTop: '10px'
-              }}
-            >
-              Crear Sorteo
-            </p>
+            <p style={estiloLetraMid}>Nuevo Sorteo</p>
+          </Button>
+          <Button onClick={handleNavigate('/sorteo')}>
+            <p style={estiloLetraMid}>2 Equipos</p>
+          </Button>
+          <Button onClick={handleNavigate('/sorteo')}>
+            <p style={estiloLetraMid}>Parejas</p>
           </Button>
         </MediaQuery>
       </Toolbar>
