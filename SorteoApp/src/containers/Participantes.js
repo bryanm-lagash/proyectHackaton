@@ -21,6 +21,8 @@ const Participantes = props => {
   const handleNavigate = id => {
     const url = `${INSCRIPCION}/${id}`;
 
+    console.log('Lista sorteos : ', id);
+
     dispatch(identificarSorteoId(id));
     dispatch(push(url));
   };
