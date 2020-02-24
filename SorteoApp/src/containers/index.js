@@ -8,6 +8,7 @@ import Ganador from './Ganador';
 import Lobby from './Lobby';
 import SorteoFutbol from './SorteoFutbol';
 import FormFutbol from './FormFutbol';
+import SorteoPingPong from './SorteoPingPong';
 
 export {
   Home,
@@ -19,5 +20,6 @@ export {
   Ganador,
   Lobby,
   SorteoFutbol,
-  FormFutbol
+  FormFutbol,
+  SorteoPingPong
 };

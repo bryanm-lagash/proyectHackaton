@@ -1,7 +1,6 @@
 import { create } from 'apisauce';
 
 const config = {
-  // baseURL: 'http://localhost:3000/'
   baseURL: 'https://app-sorteo.firebaseio.com/'
 };
 

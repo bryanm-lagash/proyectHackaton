@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { LOBBY_ADMIN, HOME } from '../routes/paths';
 import jsonApi from '../services/jsonApi';
-import { configuracionSorteo } from '../actions/sorteo';
+import { configuracionSorteo, identificarSorteoId } from '../actions/sorteo';
 
 import useStyles from './styles';
 
@@ -20,19 +20,6 @@ const uuidv4 = require('uuid/v4');
 const Sorteo = () => {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
-
-  const [formState, setFormState] = useState({
-    formData: {
-      id: '',
-      nombreAdmin: '',
-      nombreSorteo: '',
-      minimoParticipantes: 0,
-      cantidadGanadores: 0
-    }
-    // valid: false
-  });
-
-  // const onChangeHandler = () => {};
 
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -43,30 +30,18 @@ const Sorteo = () => {
   const classes = useStyles();
 
   const onSubmit = async data => {
-    const minimoParticipantes = parseInt(data.minimo);
-    const cantidadSeleccionados = parseInt(data.seleccionados);
+    const idNueva = uuidv4();
 
-    if (minimoParticipantes <= cantidadSeleccionados) {
-      alert(
-        'El numero de Seleccionados debe ser menor a la cantidad minima de participantes'
-      );
-    } else {
-      const idNueva = uuidv4();
+    data.id = idNueva;
 
-      data.id = idNueva;
+    const { status } = await jsonApi().crearSorteo(data);
 
-      // console.log('recibe', data);
-      // const indice = datosApi.findIndex(element => element.email === nameObject);
-      const { status } = await jsonApi().crearSorteoFutbol(data);
-
-      // console.log(status);
-
-      if (status === 200) {
-        dispatch(push(LOBBY_ADMIN));
-      }
-
-      handleData(data);
+    if (status === 200) {
+      dispatch(identificarSorteoId(data.id));
+      dispatch(push(LOBBY_ADMIN));
     }
+
+    handleData(data);
   };
 
   return (
@@ -119,39 +94,6 @@ const Sorteo = () => {
                 />
                 {errors.firstName && errors.firstName.type === 'required' && (
                   <span>First name is required.</span>
-                )}
-
-                <TextField
-                  className={classes.item}
-                  id='minimo'
-                  label='Mínimo participantes'
-                  name='minimo'
-                  type='number'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  inputRef={register({ required: true, maxLength: 5, min: 2 })}
-                  fullWidth
-                  variant='outlined'
-                />
-                {errors.minimo && errors.minimo.type === 'required' && (
-                  <span role='alert'>Minimo de participantes requerido.</span>
-                )}
-                <TextField
-                  className={classes.item}
-                  id='seleccionados'
-                  label='Número ganadores'
-                  type='number'
-                  name='seleccionados'
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  inputRef={register({ required: true, maxLength: 5, min: 1 })}
-                  fullWidth
-                  variant='outlined'
-                />
-                {errors.minimo && errors.minimo.type === 'required' && (
-                  <span role='alert'>Minimo de participantes requerido.</span>
                 )}
 
                 <Button
