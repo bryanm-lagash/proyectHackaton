@@ -28,7 +28,11 @@ const InfoSorteo = () => {
   });
 
   if (dataForm === undefined) {
-    return <div />;
+    return (
+      <div>
+        <p>HOLAAAA</p>
+      </div>
+    );
   }
 
   return (

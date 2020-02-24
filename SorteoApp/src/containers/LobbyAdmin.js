@@ -3,7 +3,7 @@ import { Button, Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import { GANADOR } from '../routes/paths';
+import { GANADOR, INSCRIPCION } from '../routes/paths';
 import InfoSorteo from '../components/InfoSorteo';
 import ListaUsers from '../components/listaUsers';
 import CodeQR from '../components/QRcode';
@@ -37,7 +37,7 @@ const LobbyAdmin = () => {
       <Header />
       <div style={{ textAlign: 'center' }}>
         <InfoSorteo />
-        <CodeQR id={idSorteo} />
+        <CodeQR path={INSCRIPCION} id={idSorteo} />
       </div>
       <div>
         <Container className={classes.container} maxWidth={false}>

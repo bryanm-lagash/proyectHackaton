@@ -7,9 +7,10 @@ import * as firebase from 'firebase';
 import useMount from '../hooks/useMount';
 import InfoSorteo from '../components/InfoSorteo';
 import ListaUsers from '../components/listaUsers';
-import { GANADOR } from '../routes/paths';
+import { GANADOR, INSCRIPCION } from '../routes/paths';
 import Header from '../components/Header';
 import { setGanador } from '../actions/sorteo';
+import CodeQR from '../components/QRcode';
 
 import useStyles from './styles';
 
@@ -38,6 +39,7 @@ const Lobby = () => {
     <Container className={classes.container} maxWidth={false}>
       <Header />
       <InfoSorteo />
+      <CodeQR path={INSCRIPCION} id={idSorteo} />
       <ListaUsers />
     </Container>
   );

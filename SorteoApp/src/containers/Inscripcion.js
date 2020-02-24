@@ -54,7 +54,7 @@ const Inscripcion = props => {
               <Grid className={classes.grid}>
                 <Paper className={classes.paperForm}>
                   <DialogTitle id='form-dialog-title'>
-                    <InfoSorteo id={props.match.params.id} />
+                    <InfoSorteo />
                   </DialogTitle>
 
                   <TextField

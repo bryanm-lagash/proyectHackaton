@@ -9,7 +9,7 @@ import useMount from '../hooks/useMount';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
-import { INSCRIPCION } from '../routes/paths';
+import { INSCRIPCION, PARTICIPANTES } from '../routes/paths';
 
 import useStyles from './styles';
 
@@ -47,7 +47,7 @@ const Participantes = props => {
     <div>
       <Header />
       <div width='1000px'>
-        <CodeQR link='' />
+        <CodeQR path={PARTICIPANTES} />
         {Object.values(listaSorteo).map(sorteo => (
           <div
             style={{
