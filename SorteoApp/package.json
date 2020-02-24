@@ -8,6 +8,7 @@
     "animate.css": "^3.7.2",
     "animate.css-react": "^1.0.0",
     "apisauce": "1.1.1",
+    "bootstrap-css-only": "^4.4.1",
     "connected-react-router": "6.6.1",
     "firebase": "^7.8.2",
     "history": "4.10.1",

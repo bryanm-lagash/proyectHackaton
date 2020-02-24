@@ -12,15 +12,15 @@ const SorteoFutbol = () => {
   const dispatch = useDispatch();
   const jugadores = [
     { nombre: 'bryan' },
-    { nombre: 'mathias' }
-    // { nombre: 'andres' },
-    // { nombre: 'maximiliano' }
-    // { nombre: 'neko' },
-    // { nombre: 'marco' },
-    // { nombre: 'patricio' },
-    // { nombre: 'pipo' },
-    // { nombre: 'jeremy' },
-    // { nombre: 'jimy' }
+    { nombre: 'mathias' },
+    { nombre: 'andres' },
+    { nombre: 'maximiliano' },
+    { nombre: 'neko' },
+    { nombre: 'marco' },
+    { nombre: 'patricio' },
+    { nombre: 'pipo' },
+    { nombre: 'jeremy' },
+    { nombre: 'jimy' }
   ];
 
   useMount(async () => {
@@ -33,8 +33,8 @@ const SorteoFutbol = () => {
         console.log(Object.values(response));
 
         if (response !== null) {
-          // dispatch(equiposFutbol(Object.values(response)));
-          dispatch(equiposFutbol(jugadores));
+          dispatch(equiposFutbol(Object.values(response)));
+          // dispatch(equiposFutbol(jugadores));
         }
       });
   });
@@ -47,7 +47,7 @@ const SorteoFutbol = () => {
 
   return (
     <div>
-      <h1>HOLA SORTEO FUTBOL</h1>
+      <h1>SORTEO FUTBOL</h1>
       <div>
         <h2>EQUIPO A</h2>
         <h3>Capitan: {capitanes.capitanA}</h3>
