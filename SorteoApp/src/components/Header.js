@@ -7,10 +7,10 @@ import { push } from 'connected-react-router';
 import MediaQuery from 'react-responsive';
 
 import Logo from '../resources/Logo.png';
-import useStyles from '../containers/styles';
+// import useStyles from '../containers/styles';
 
 const Header = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const handleNavigate = useCallback(path => () => dispatch(push(path)), [
     dispatch
@@ -29,7 +29,7 @@ const Header = () => {
       <Toolbar>
         <Container maxWidth='sm'>
           <Button
-            href='https://www.lagash.com/'
+            href='/'
             style={{
               position: 'fixed',
               left: 20,
@@ -38,7 +38,7 @@ const Header = () => {
               marginRight: '10px'
             }}
           >
-            <img src={Logo} />
+            <img src={Logo} alt='logo' />
           </Button>
         </Container>
 
