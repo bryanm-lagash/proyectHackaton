@@ -46,11 +46,9 @@ const Ganador = () => {
       </font>
       <div>
         <img src={imagen} className='app-imagen' alt='logo' />
-        <h1 className='tituloGanadro'>Aqui va el ganador</h1>
+        <h1 className='tituloGanadro'>{user}</h1>
         <img src={imagen} className='app-imagen' alt='logo' />
       </div>
-
-      <p>{user}</p>
     </Container>
   );
 };
