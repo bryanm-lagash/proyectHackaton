@@ -1,14 +1,11 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
-import useStyles from '../containers/styles';
 import { configuracionSorteo } from '../actions/sorteo';
 
 const InfoSorteo = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const { idSorteo, dataForm } = useSelector(({ sorteo }) => sorteo);
 
@@ -27,24 +24,18 @@ const InfoSorteo = () => {
       });
   });
 
-  if (dataForm === undefined) {
-    return (
-      <div>
-        <p>HOLAAAA</p>
-      </div>
-    );
-  }
-
   return (
-    <Container className={classes.container} maxWidth={false}>
+    <div style={{ textAlign: 'center' }}>
       {Object.values(dataForm).map((sorteo, i) => (
         <div>
-          <h2>Nombre Sorteo: {sorteo.nombre_sorteo}</h2>
-          <h5>Creador: {sorteo.nombre}</h5>
-          <p>ID: {sorteo.id}</p>
+          <h2 style={{ color: 'rgb(25,41,151)', marginTop: '15px' }}>
+            {sorteo.nombre_sorteo}
+          </h2>
+          <h5 style={{ color: 'rgb(36,58,218)' }}>Creador: {sorteo.nombre}</h5>
+          <hr />
         </div>
       ))}
-    </Container>
+    </div>
   );
 };
 

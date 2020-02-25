@@ -32,10 +32,9 @@ const Header = () => {
             href='/'
             style={{
               position: 'fixed',
-              left: 20,
+              left: -20,
               height: 30,
-              top: 15,
-              marginRight: '10px'
+              top: 15
             }}
           >
             <img src={Logo} alt='logo' />

@@ -5,7 +5,6 @@ import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
-// import InfoSorteo from '../components/InfoSorteo';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
