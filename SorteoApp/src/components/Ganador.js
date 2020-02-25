@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import * as firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< HEAD
 import { push } from 'connected-react-router';
-=======
 import { Wave } from 'react-animated-text';
->>>>>>> fb798e953edc04ab15e90388a01b155caf94c17e
 
 import papelitos from '../containers/Papelitos.gif';
 import imagen from '../containers/imagen.jpg';
