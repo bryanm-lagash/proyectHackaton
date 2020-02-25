@@ -65,7 +65,7 @@ const Home = () => {
         <div style={{ textAlign: 'center' }}>
           <MDBView hover zoom>
             <Button
-              href='/sorteo'
+              href='/formFutbol'
               style={{
                 position: 'relative',
                 left: 0,

@@ -6,6 +6,7 @@ import useForm from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Container, Grid, Paper } from '@material-ui/core';
+import * as firebase from 'firebase';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -33,13 +34,36 @@ const Sorteo = () => {
     const idNueva = uuidv4();
 
     data.id = idNueva;
+    data.estado = 'pendiente';
 
-    const { status } = await jsonApi().crearSorteo(data);
+    // const { status } = await jsonApi().crearSorteo(data);
 
-    if (status === 200) {
-      dispatch(identificarSorteoId(data.id));
-      dispatch(push(LOBBY_ADMIN));
-    }
+    const fire = firebase
+      .database()
+      .ref(`sorteo/${data.id}`)
+      .set(
+        {
+          id: data.id,
+          nombre: data.nombre,
+          nombre_sorteo: data.nombre_sorteo,
+          estado: data.estado
+        },
+        error => {
+          if (error) {
+            console.log('Falló', error);
+          } else {
+            dispatch(identificarSorteoId(data.id));
+            dispatch(push(LOBBY_ADMIN));
+          }
+        }
+      );
+
+    console.log('firebase', fire);
+
+    // if (status === 200) {
+    //   dispatch(identificarSorteoId(data.id));
+    //   dispatch(push(LOBBY_ADMIN));
+    // }
 
     handleData(data);
   };
