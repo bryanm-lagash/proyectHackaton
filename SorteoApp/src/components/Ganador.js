@@ -43,6 +43,8 @@ const Ganador = () => {
     dispatch(push(HOME));
   }, 30000);
 
+  const texto = 'El Ganador Es';
+
   return (
     <Container
       style={{ textAlign: 'center' }}
