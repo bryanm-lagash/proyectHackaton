@@ -5,10 +5,7 @@ import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
-<<<<<<< HEAD
 import ListaSorteoFutbol from '../components/ListaSorteoFutbol';
-=======
->>>>>>> fb798e953edc04ab15e90388a01b155caf94c17e
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
