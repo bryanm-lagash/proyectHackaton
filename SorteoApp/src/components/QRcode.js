@@ -49,7 +49,7 @@ const CodeQR = props => {
       className={classes.container}
       maxWidth={false}
     >
-      <span className='QRCode' dangerouslySetInnerHTML={{ __html: qrImage }} />}
+      <span className='QRCode' dangerouslySetInnerHTML={{ __html: qrImage }} />
       <hr />
     </Container>
   );
