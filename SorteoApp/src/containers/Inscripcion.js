@@ -64,7 +64,7 @@ const Inscripcion = props => {
       <Header />
       <Fragment>
         <form className='App-Form' onSubmit={handleSubmit(onSubmit)}>
-          <Container className={classes.container} maxWidth={false}>
+          <Container className={classes.container}>
             <Grid className={classes.grid}>
               <Paper className={classes.paperForm}>
                 <DialogTitle id='form-dialog-title'>

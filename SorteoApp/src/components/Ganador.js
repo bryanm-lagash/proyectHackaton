@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import * as firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { push } from 'connected-react-router';
+=======
+import { Wave } from 'react-animated-text';
+>>>>>>> fb798e953edc04ab15e90388a01b155caf94c17e
 
+import papelitos from '../containers/Papelitos.gif';
+import imagen from '../containers/imagen.jpg';
 import { setGanador } from '../actions/sorteo';
 import useMount from '../hooks/useMount';
 import useStyles from '../containers/styles';
@@ -46,11 +52,16 @@ const Ganador = () => {
       className={classes.container}
       maxWidth={false}
     >
-      <font face='Roboto' size=' 7'>
-        EL GANADOR ES
+      <font className='winner' face='Roboto' size='20'>
+        <img src={papelitos} className='app2-imagen' alt='logo' />
+        <img src={papelitos} className='app3-imagen' alt='logo' />
+        <Wave text={texto} effect='fadeOut' effectChange={10.2} />
       </font>
-
-      <p>{user}</p>
+      <div>
+        <img src={imagen} className='app-imagen' alt='logo' />
+        <h1 className='tituloGanadro'>{user}</h1>
+        <img src={imagen} className='app-imagen' alt='logo' />
+      </div>
     </Container>
   );
 };

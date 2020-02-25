@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import qr from 'qr-image';
-import { useSelector } from 'react-redux';
 
 import useMount from '../hooks/useMount';
 import useStyles from '../containers/styles';
@@ -16,8 +15,8 @@ const CodeQR = props => {
     if ((path && id === undefined) || id === '') {
       const code = qr.imageSync(`http://10.10.11.60:3000${path}`, {
         type: 'svg',
-        size: 10,
-        margin: 2
+        size: 9,
+        margin: 1
       });
 
       setQrImage(code);
@@ -26,13 +25,23 @@ const CodeQR = props => {
     if (path && id) {
       const code = qr.imageSync(`http://10.10.11.60:3000${path}${id}`, {
         type: 'svg',
-        size: 10,
-        margin: 2
+        size: 9,
+        margin: 1
       });
 
       setQrImage(code);
     }
   });
+
+  // if (window.screen.width <= 418) {
+  //   const code = qr.imageSync(`http://10.10.11.53:3000${path}${id}`, {
+  //     type: 'svg',
+  //     size: 8,
+  //     margin: 2
+  //   });
+
+  //   setQrImage(code);
+  // }
 
   return (
     <Container
@@ -40,7 +49,8 @@ const CodeQR = props => {
       className={classes.container}
       maxWidth={false}
     >
-      <span dangerouslySetInnerHTML={{ __html: qrImage }} />
+      <span className='QRCode' dangerouslySetInnerHTML={{ __html: qrImage }} />
+      <hr />
     </Container>
   );
 };
