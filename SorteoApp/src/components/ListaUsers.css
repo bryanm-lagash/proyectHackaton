@@ -1,0 +1,51 @@
+.GridListUsers {
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  margin: auto;
+  height: 80%;
+}
+
+@media (max-width: 670px) {
+  .GridListUsers {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    margin: auto;
+    height: 80%;
+  }
+}
+
+@media (min-width: 860px) {
+  .GridListUsers {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    margin: auto;
+    height: 80%;
+  }
+}
+
+@media (min-width: 1060px) {
+  .GridListUsers {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    display: grid;
+    margin: auto;
+    height: 80%;
+  }
+}
+
+@media (max-width: 410px) {
+  .GridListUsers {
+    grid-template-columns: 1fr;
+    display: grid;
+    margin: auto;
+    height: 80%;
+  }
+}
+
+.paper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icono {
+  color: rgb(43, 43, 185);
+}
