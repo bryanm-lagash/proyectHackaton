@@ -5,6 +5,7 @@ import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
+import ListaSorteoFutbol from '../components/ListaSorteoFutbol';
 import CodeQR from '../components/QRcode';
 import Header from '../components/Header';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
@@ -31,6 +32,9 @@ const Participantes = props => {
     firebase
       .database()
       .ref('sorteo/')
+      // .ref('sorteoFutbol/')
+      .orderByChild('estado')
+      .equalTo('pendiente')
       .on('value', snap => {
         const sorteos = snap.val();
 
@@ -41,12 +45,19 @@ const Participantes = props => {
   });
 
   if (listaSorteo === undefined || listaSorteo === null) {
-    return <div />;
+    return (
+      <div>
+        <ListaSorteoFutbol />
+      </div>
+    );
   }
 
   return (
     <div>
       <Header />
+      <h3>
+        <center>Sorteos</center>
+      </h3>
       <div width='1000px'>
         <CodeQR path={PARTICIPANTES} />
         {Object.values(listaSorteo).map(sorteo => (
@@ -71,6 +82,7 @@ const Participantes = props => {
             <br />
           </div>
         ))}
+        <ListaSorteoFutbol />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import useForm from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import * as firebase from 'firebase';
 
 import { LOBBY_ADMIN, HOME } from '../routes/paths';
 import jsonApi from '../services/jsonApi';
@@ -23,17 +24,37 @@ function FormFutbol() {
   const classes = useStyles();
 
   const onSubmit = async data => {
-    const { nombreCreador, nombreSorteo, equipoUno, equipoDos } = data;
+    // const { nombreCreador, nombreSorteo, equipoUno, equipoDos } = data;
 
     const idNueva = uuidv4();
 
     data.id = idNueva;
 
-    const { status } = await jsonApi().crearSorteoFutbol(data);
+    // const { status } = await jsonApi().crearSorteoFutbol(data);
 
-    if (status === 200) {
-      dispatch(push(LOBBY_ADMIN));
-    }
+    firebase
+      .database()
+      .ref(`sorteoFutbol/${data.id}`)
+      .set(
+        {
+          id: data.id,
+          nombreSorteo: data.nombreSorteo,
+          nombreCreado: data.nombreCreador,
+          equipoUno: data.equipoUno,
+          equipoDos: data.equipoDos,
+          estado: 'pendiente'
+        },
+        error => {
+          error
+            ? console.log('Error Firebase', error)
+            : dispatch(push(LOBBY_ADMIN));
+
+          // if (error) {
+          // } else {
+          //   dispatch(push(LOBBY_ADMIN));
+          // }
+        }
+      );
   };
 
   return (
