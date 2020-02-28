@@ -1,20 +1,19 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Container } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
+// import { useDispatch } from 'react-redux';
+// import { push } from 'connected-react-router';
 
-import loginBg2 from '../resources/loginBg2.gif';
 import Ganadores from '../components/Ganador';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 
 import useStyles from './styles';
 
 const Ganador = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const handleNavigate = useCallback(path => () => dispatch(push(path)), [
-    dispatch
-  ]);
+  // const dispatch = useDispatch();
+  // const handleNavigate = useCallback(path => () => dispatch(push(path)), [
+  //   dispatch
+  // ]);
 
   return (
     <div
@@ -29,6 +28,7 @@ const Ganador = () => {
       <div>
         <Container className={classes.container} maxWidth={false}>
           <Header />
+          <div style={{ marginTop: '50px' }} />
           <Ganadores />
         </Container>
       </div>

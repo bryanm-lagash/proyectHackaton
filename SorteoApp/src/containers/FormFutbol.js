@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Grid, Paper } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,9 +8,8 @@ import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import * as firebase from 'firebase';
 
-import { LOBBY_ADMIN, HOME } from '../routes/paths';
-import jsonApi from '../services/jsonApi';
-import Header from '../components/Header';
+import { LOBBY_ADMIN } from '../routes/paths';
+import Header from '../components/Navigation/Navbar/Navbar';
 
 import Error from './Error';
 import useStyles from './styles';
@@ -48,11 +47,6 @@ function FormFutbol() {
           error
             ? console.log('Error Firebase', error)
             : dispatch(push(LOBBY_ADMIN));
-
-          // if (error) {
-          // } else {
-          //   dispatch(push(LOBBY_ADMIN));
-          // }
         }
       );
   };
@@ -60,6 +54,7 @@ function FormFutbol() {
   return (
     <div>
       <Header />
+      <div style={{ marginTop: '50px' }} />
       <Container className={classes.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid className={classes.grid2}>

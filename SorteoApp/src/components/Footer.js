@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container } from '@material-ui/core';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 
-import Logo_Blanco from '../resources/Logo_Blanco.png';
+import LogoBlanco from '../resources/Logo_Blanco.png';
 
 const Footer = () => (
   <BottomNavigation
@@ -17,8 +17,9 @@ const Footer = () => (
     <Container maxWidth='sm'>
       <Button href='https://www.lagash.com/'>
         <img
-          src={Logo_Blanco}
+          src={LogoBlanco}
           style={{ position: 'fixed', right: 0, bottom: 0 }}
+          alt='LogoBlanco'
         />{' '}
       </Button>
     </Container>

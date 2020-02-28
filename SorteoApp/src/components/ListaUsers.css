@@ -5,18 +5,18 @@
   height: 80%;
 }
 
-@media (max-width: 670px) {
+@media (min-width: 860px) {
   .GridListUsers {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     display: grid;
     margin: auto;
     height: 80%;
   }
 }
 
-@media (min-width: 860px) {
+@media (max-width: 670px) {
   .GridListUsers {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     display: grid;
     margin: auto;
     height: 80%;

@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import useMount from '../hooks/useMount';
 import ListaSorteoFutbol from '../components/ListaSorteoFutbol';
 import CodeQR from '../components/QRcode';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 import { setListaSorteos, identificarSorteoId } from '../actions/sorteo';
 import { INSCRIPCION, PARTICIPANTES } from '../routes/paths';
 
@@ -28,7 +28,8 @@ const Participantes = props => {
   };
 
   useMount(async () => {
-    console.log(props.match.params);
+    // console.log(props.match.params);
+    // debugger;
     firebase
       .database()
       .ref('sorteo/')
@@ -58,7 +59,7 @@ const Participantes = props => {
       <h3>
         <center>Sorteos</center>
       </h3>
-      <div width='1000px'>
+      <div style={{ marginTop: '50px' }} width='1000px'>
         <CodeQR path={PARTICIPANTES} />
         {Object.values(listaSorteo).map(sorteo => (
           <div

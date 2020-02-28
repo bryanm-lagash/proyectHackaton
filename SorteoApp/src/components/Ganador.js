@@ -7,7 +7,6 @@ import { Wave } from 'react-animated-text';
 
 import papelitos from '../containers/Papelitos.gif';
 import imagen from '../containers/imagen.jpg';
-import { setGanador } from '../actions/sorteo';
 import useMount from '../hooks/useMount';
 import useStyles from '../containers/styles';
 import { HOME } from '../routes/paths';

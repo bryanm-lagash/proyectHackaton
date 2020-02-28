@@ -8,7 +8,7 @@ import InfoSorteo from '../components/InfoSorteo';
 import ListaUsers from '../components/listaUsers';
 import CodeQR from '../components/QRcode';
 import { setGanador } from '../actions/sorteo';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 import jsonApi from '../services/jsonApi';
 
 import useStyles from './styles';
@@ -35,6 +35,7 @@ const LobbyAdmin = () => {
   return (
     <div>
       <Header />
+      <div style={{ marginTop: '80px' }} />
       <div style={{ textAlign: 'center' }}>
         <InfoSorteo />
         <CodeQR path={INSCRIPCION} id={idSorteo} />

@@ -9,9 +9,8 @@ import { Container, Grid, Paper } from '@material-ui/core';
 import * as firebase from 'firebase';
 
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 import { LOBBY_ADMIN, HOME } from '../routes/paths';
-import jsonApi from '../services/jsonApi';
 import { configuracionSorteo, identificarSorteoId } from '../actions/sorteo';
 
 import useStyles from './styles';
@@ -71,6 +70,7 @@ const Sorteo = () => {
   return (
     <div>
       <Header />
+      <div style={{ marginTop: '80px' }} />
       <Fragment>
         <form className='App-Form' onSubmit={handleSubmit(onSubmit)}>
           <Container className={classes.container} maxWidth={false}>

@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { Button, Container, Grid, Paper } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import BackgroundLogo from '../resources/Background_logo.png';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 
 import useStyles from './styles';
 
@@ -20,7 +20,11 @@ const Root = () => {
     <div>
       <Header />
       <div style={{ textAlign: 'center' }}>
-        <img src={BackgroundLogo} style={{ position: 'relative', top: 60 }} />
+        <img
+          src={BackgroundLogo}
+          style={{ position: 'relative', top: 60 }}
+          alt='BackgroundLogo'
+        />
       </div>
       <div style={{ textAlign: 'center' }}>
         {' '}

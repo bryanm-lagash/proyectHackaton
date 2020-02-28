@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 
 import useMount from '../hooks/useMount';
 import { LOBBY } from '../routes/paths';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 import InfoSorteo from '../components/InfoSorteo';
 import jsonApi from '../services/jsonApi';
 import { identificarSorteoId, configuracionSorteo } from '../actions/sorteo';
@@ -62,6 +62,7 @@ const Inscripcion = props => {
   return (
     <div>
       <Header />
+      <div style={{ marginTop: '50px' }} />
       <Fragment>
         <form className='App-Form' onSubmit={handleSubmit(onSubmit)}>
           <Container className={classes.container}>

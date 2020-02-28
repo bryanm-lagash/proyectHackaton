@@ -13,7 +13,7 @@ const CodeQR = props => {
 
   useMount(async () => {
     if ((path && id === undefined) || id === '') {
-      const code = qr.imageSync(`http://10.10.11.60:3000${path}`, {
+      const code = qr.imageSync(`http://10.10.11.53:3000${path}`, {
         type: 'svg',
         size: 9,
         margin: 1
@@ -23,7 +23,7 @@ const CodeQR = props => {
     }
 
     if (path && id) {
-      const code = qr.imageSync(`http://10.10.11.60:3000${path}${id}`, {
+      const code = qr.imageSync(`http://10.10.11.53:3000${path}${id}`, {
         type: 'svg',
         size: 9,
         margin: 1
@@ -32,16 +32,6 @@ const CodeQR = props => {
       setQrImage(code);
     }
   });
-
-  // if (window.screen.width <= 418) {
-  //   const code = qr.imageSync(`http://10.10.11.53:3000${path}${id}`, {
-  //     type: 'svg',
-  //     size: 8,
-  //     margin: 2
-  //   });
-
-  //   setQrImage(code);
-  // }
 
   return (
     <Container

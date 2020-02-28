@@ -39,7 +39,7 @@ const SorteoPingPong = () => {
       });
   });
 
-  const handleData = j => {
+  const handleData = () => {
     // dispatch(capitanesEquipos(j));
 
     console.log('selector', capitanes);

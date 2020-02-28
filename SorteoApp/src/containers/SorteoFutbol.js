@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as firebase from 'firebase';
 
@@ -10,18 +10,6 @@ const SorteoFutbol = () => {
     ({ sorteoFutbol }) => sorteoFutbol
   );
   const dispatch = useDispatch();
-  const jugadores = [
-    { nombre: 'bryan' },
-    { nombre: 'mathias' },
-    { nombre: 'andres' },
-    { nombre: 'maximiliano' },
-    { nombre: 'neko' },
-    { nombre: 'marco' },
-    { nombre: 'patricio' },
-    { nombre: 'pipo' },
-    { nombre: 'jeremy' },
-    { nombre: 'jimy' }
-  ];
 
   useMount(async () => {
     firebase

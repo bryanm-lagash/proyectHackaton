@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
 
-import { useMount, useEffect } from '../hooks/index';
+import { useEffect } from '../hooks/index';
 import useStyles from '../containers/styles';
 import { identificarSorteoId } from '../actions/sorteo';
 import { INSCRIPCION } from '../routes/paths';

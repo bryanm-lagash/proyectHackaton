@@ -13,6 +13,7 @@ import {
   FormFutbol,
   SorteoPingPong
 } from '../containers';
+import Navbar from '../components/Navigation/Navbar/Navbar';
 
 import {
   HOME,
@@ -24,7 +25,8 @@ import {
   LOBBY,
   SORTEO_FUTBOL,
   FORM_FUTBOL,
-  SORTEO_PING_PONG
+  SORTEO_PING_PONG,
+  NAVBAR
 } from './paths';
 
 const Routes = () => (
@@ -40,6 +42,7 @@ const Routes = () => (
     <Route path={SORTEO_FUTBOL} component={SorteoFutbol} />
     <Route path={FORM_FUTBOL} component={FormFutbol} />
     <Route path={SORTEO_PING_PONG} component={SorteoPingPong} />
+    <Route path={NAVBAR} component={Navbar} />
   </Switch>
 );
 

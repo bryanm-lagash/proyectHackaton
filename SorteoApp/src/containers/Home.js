@@ -13,7 +13,7 @@ import TombolaDesktop from '../resources/tombolaDesktop.png';
 import PingPongDesktop from '../resources/pingpongDesktop.png';
 import FutbolDesktop from '../resources/futbolDesktop.png';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Navbar from '../components/Navigation/Navbar/Navbar';
 import jsonApi from '../services/jsonApi';
 import useMount from '../hooks/useMount';
 import { setListaSorteos } from '../actions/sorteo';
@@ -37,11 +37,11 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
-
+      <Navbar />
+      <div style={{ marginTop: '55px' }} />
       <MediaQuery maxWidth='1366px'>
         {/* {Logo SORTEO */}
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginTop: '60px' }}>
           <MDBView hover zoom>
             <Button
               href='/sorteo'

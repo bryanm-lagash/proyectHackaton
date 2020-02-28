@@ -61,7 +61,9 @@ const ListaUsers = () => {
   return (
     <Container className='raduis'>
       <div style={{ textAlign: 'center' }}>
-        <h2>Lista de Usuarios</h2>
+        <h2 style={{ paddingTop: '20px', color: 'white', fontSize: '38px' }}>
+          Lista de Usuarios
+        </h2>
         <p className='numeroParticipantes'>{`Numero de participantes: ${userList.length}`}</p>
       </div>
       <FormRow />

@@ -8,7 +8,7 @@ import useMount from '../hooks/useMount';
 import InfoSorteo from '../components/InfoSorteo';
 import ListaUsers from '../components/listaUsers';
 import { GANADOR, INSCRIPCION } from '../routes/paths';
-import Header from '../components/Header';
+import Header from '../components/Navigation/Navbar/Navbar';
 import { setGanador } from '../actions/sorteo';
 import CodeQR from '../components/QRcode';
 
@@ -38,6 +38,7 @@ const Lobby = () => {
   return (
     <Container className={classes.container} maxWidth={false}>
       <Header />
+      <div style={{ marginTop: '80px' }} />
       <InfoSorteo />
       <CodeQR path={INSCRIPCION} id={idSorteo} />
       <ListaUsers />

@@ -25,8 +25,8 @@ const InfoSorteo = () => {
   });
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      {Object.values(dataForm).map((sorteo, i) => (
+    <div style={{ textAlign: 'center', marginTop: '50px ' }}>
+      {Object.values(dataForm).map(sorteo => (
         <div>
           <h2 style={{ color: 'rgb(25,41,151)', marginTop: '15px' }}>
             {sorteo.nombre_sorteo}
